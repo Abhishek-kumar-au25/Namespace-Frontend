@@ -1,46 +1,154 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LOGO_URL="https://customer-assets.emergentagent.com/job_2e55a7fc-06f9-47db-b4a6-4600417bac65/artifacts/o8krn3xe_Free__2_-removebg-preview.png";
+import { Button } from "@/components/ui/button";
 
-const CaseStudies=()=>{
+// IMPORT IMAGES (use placeholder hosted images)
+const case1 = "https://images.unsplash.com/photo-1581093458799-1b7c4a5f7b28?auto=format&fit=crop&w=800&q=80";
+const case2 = "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=800&q=80";
+const case3 = "https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=800&q=80";
 
-const cases=[
-{title:"Fraud Detection AI",result:"Reduced fraud by 80%"},
-{title:"Audit Automation",result:"Saved 2000+ hours"},
-{title:"Risk Prediction",result:"Prevented compliance failures"},
-];
+const CaseStudies = () => {
 
-return(
-<div className="min-h-screen bg-[#0A0A0F] text-white">
+  // CASE DATA WITH IMAGES
+  const cases = [
+    {
+      title: "Fraud Detection AI",
+      result: "Reduced fraud by 80%",
+      image: case1,
+    },
+    {
+      title: "Audit Automation",
+      result: "Saved 2000+ hours",
+      image: case2,
+    },
+    {
+      title: "Risk Prediction",
+      result: "Prevented compliance failures",
+      image: case3,
+    },
+  ];
 
-<header className="fixed top-0 left-0 right-0 z-50">
-<div className="mx-auto px-6 pt-4">
-<nav className="premium-header px-10 py-3 flex justify-between">
-<Link to="/"><img src={LOGO_URL} className="h-12"/></Link>
-</nav>
-</div>
-</header>
+  return (
+    <div className="min-h-screen text-white">
 
-<section className="pt-32 text-center">
-<h1 className="text-5xl font-bold">Case <span className="gradient-text">Studies</span></h1>
-</section>
 
-<section className="grid md:grid-cols-3 gap-8 py-20 px-6 max-w-6xl mx-auto">
-{cases.map((c,i)=>(
-<div key={i} className="glass-card p-8">
-<h3 className="font-semibold">{c.title}</h3>
-<p className="text-purple-400">{c.result}</p>
-</div>
-))}
-</section>
 
-<footer className="py-8 text-center bg-[#08080C] border-t border-white/5">
-© 2024 NameSpace Consultants
-</footer>
+      {/* HERO */}
+      <section className="pt-32 text-center px-6">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Case Studies:{" "}
+            <span className="gradient-text">Real Results</span>
+          </h1>
 
-</div>
-);
+          <p className="text-gray-400 mb-6">
+            Learn how our AI solutions created measurable business impact
+            across industry verticals.
+          </p>
+        </div>
+      </section>
+
+      {/* CASE CARDS */}
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+
+          {cases.map((c, i) => (
+            <div key={i} className="glass-card p-0 overflow-hidden">
+
+              {/* IMAGE */}
+              <div className="relative h-48">
+                <img
+                  src={c.image}
+                  alt={c.title}
+                  className="w-full h-full object-cover"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                  <div>
+                    <h3 className="text-white font-semibold">
+                      {c.title}
+                    </h3>
+                    <p className="text-sm text-purple-400">
+                      {c.result}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CONTENT */}
+              <div className="p-6">
+                <p className="text-gray-300 text-sm mb-4">
+                  A concise summary of the challenge, our approach and the
+                  outcome that demonstrates the value we delivered.
+                </p>
+
+                <div className="text-right">
+                  <Link to="/contact">
+                    <Button size="sm" className="rounded-full px-4">
+                      Get the full case study
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+      </section>
+
+      {/* DETAILED SUMMARIES */}
+      <section className="py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+
+          <h3 className="text-xl font-semibold mb-4">
+            Case Study Deep Dives
+          </h3>
+
+          <p className="text-gray-400 mb-6">
+            Explore selected deep-dive summaries that outline the challenge,
+            approach, and measurable outcomes.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+
+            {cases.map((c, i) => (
+              <div key={`d-${i}`} className="glass-card p-6">
+
+                <h4 className="font-semibold mb-2">{c.title}</h4>
+
+                <p className="text-gray-400 text-sm mb-3">
+                  Challenge: Identify patterns of loss and reduce operational
+                  overhead using AI-driven automation.
+                </p>
+
+                <p className="text-gray-400 text-sm mb-4">
+                  Outcome:{" "}
+                  <strong className="text-purple-400">
+                    {c.result}
+                  </strong>
+                </p>
+
+                <div className="text-right">
+                  <Link to="/contact">
+                    <Button size="sm" className="rounded-full px-4">
+                      Request Full Report
+                    </Button>
+                  </Link>
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+
+
+    </div>
+  );
 };
 
 export default CaseStudies;

@@ -27,6 +27,7 @@ import { toast } from "sonner";
 
 // Pages
 import LandingPage from "./pages/LandingPage";
+import Solutions from "./pages/Solutions";
 import Dashboard from "./pages/Dashboard";
 import RiskAssessment from "./pages/RiskAssessment";
 import AuditWorkflow from "./pages/AuditWorkflow";
@@ -41,6 +42,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
 import CaseStudies from "./pages/CaseStudies";
 import Resources from "./pages/Resources";
+import ExploreSolutions from "./pages/exploreSolutions";
+import CursorDot from "@/components/layout/CursorDot";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
@@ -184,6 +187,8 @@ const AuthProvider = ({ children }) => {
 };
 
 // App Router Component
+import SiteLayout from "@/components/layout/SiteLayout";
+
 const AppRouter = () => {
   const location = useLocation();
 
@@ -194,12 +199,21 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/contact" element={<ContactUs />} />
-      <Route path="/about" element={<AboutUs />} />
-      <Route path="/terms" element={<TermsConditions />} />
-      <Route path="/privacy" element={<PrivacyPolicy />} />
-      <Route path="/cookies" element={<CookiePolicy />} />
+      {/* Public pages wrapped by SiteLayout to provide identical header/footer */}
+      <Route element={<SiteLayout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/cookies" element={<CookiePolicy />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/explore-solutions" element={<ExploreSolutions />} />
+      </Route>
+
+      {/* Protected / dashboard style routes remain separate */}
       <Route
         path="/dashboard"
         element={
@@ -256,8 +270,6 @@ const AppRouter = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/case-studies" element={<CaseStudies />} />
-      <Route path="/resources" element={<Resources />} />
     </Routes>
   );
 };
@@ -268,6 +280,7 @@ function App() {
       <AuthProvider>
         <div className="App min-h-screen bg-[#09090B]">
           <AppRouter />
+          <CursorDot />
           <Toaster position="top-right" theme="dark" />
         </div>
       </AuthProvider>

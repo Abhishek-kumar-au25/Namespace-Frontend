@@ -40,8 +40,7 @@ import {
   Flag,
 } from "lucide-react";
 
-const LOGO_URL =
-  "https://customer-assets.emergentagent.com/job_2e55a7fc-06f9-47db-b4a6-4600417bac65/artifacts/o8krn3xe_Free__2_-removebg-preview.png";
+import VideoBackground from "@/components/layout/VideoBackground";
 
 // Simple Card Component (no rotating dot)
 const AnimatedCard = ({ children, className = "", delay = 0 }) => {
@@ -55,44 +54,6 @@ const AnimatedCard = ({ children, className = "", delay = 0 }) => {
   );
 };
 
-// Cursor Following Blue Dot Component
-const CursorDot = () => {
-  const dotRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (dotRef.current) {
-        dotRef.current.style.left = `${e.clientX}px`;
-        dotRef.current.style.top = `${e.clientY}px`;
-      }
-    };
-
-    const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
-
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseenter", handleMouseEnter);
-    document.addEventListener("mouseleave", handleMouseLeave);
-
-    // Show dot after a short delay
-    setTimeout(() => setIsVisible(true), 500);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={dotRef}
-      className={`cursor-dot ${isVisible ? "visible" : ""}`}
-      data-testid="cursor-dot"
-    />
-  );
-};
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -188,10 +149,6 @@ const LandingPage = () => {
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
-  const [contactForm, setContactForm] = useState({
-    email: "",
-    subscribe: false,
-  });
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -333,26 +290,7 @@ const LandingPage = () => {
     }
   };
 
-  const handleNewsletterSubmit = async (e) => {
-    e.preventDefault();
-    if (!contactForm.email) {
-      toast.error("Please enter your email");
-      return;
-    }
 
-    try {
-      await axios.post(`${API}/contact/send`, {
-        name: "Newsletter Subscriber",
-        email: contactForm.email,
-        message: "Newsletter subscription request",
-      });
-      toast.success("Thank you for subscribing!");
-      setContactForm({ email: "", subscribe: false });
-    } catch (error) {
-      toast.success("Thank you for subscribing!");
-      setContactForm({ email: "", subscribe: false });
-    }
-  };
 
   const features = [
     {
@@ -382,31 +320,28 @@ const LandingPage = () => {
   ];
 
   const stats = [
-    { number: "10+", label: "Years of AI Expertise" },
-    { number: "50+", label: "AI-Powered Projects" },
-    { number: "100M", label: "Data Processed", suffix: "+" },
-    { number: "30+", label: "AI Solutions Deployed" },
-    { number: "10+", label: "Industry Recognitions" },
+    { number: "200+", label: "Projects Delivered" },
+    { number: "50+", label: "Models in Production" },
+    { number: "500M+", label: "Records Processed" },
+    { number: "99.9%", label: "Platform Uptime" },
+    { number: "25+", label: "Enterprise Partners" },
   ];
 
   const visionMission = [
     {
       icon: Eye,
-      title: "Our Vision",
-      description:
-        "To be the global leader in AI-driven business transformation, empowering organizations to harness the full potential of artificial intelligence.",
+      title: "Strategy",
+      description: "We align AI initiatives to measurable business outcomes with clear roadmaps and pilot-proof plans.",
     },
     {
       icon: Target,
-      title: "Our Mission",
-      description:
-        "To bridge human insight with artificial intelligence, delivering cutting-edge solutions that transform businesses and create lasting value.",
+      title: "Build",
+      description: "We design production-grade models and data platforms with security, observability and explainability built-in.",
     },
     {
       icon: Rocket,
-      title: "Our Values",
-      description:
-        "Innovation, Integrity, Excellence, and Client Success drive everything we do. We believe in transparent partnerships and measurable results.",
+      title: "Operate",
+      description: "We operationalize models with MLOps, monitoring and retraining workflows for reliable long-term value.",
     },
   ];
 
@@ -446,19 +381,11 @@ const LandingPage = () => {
   ];
 
   const services = [
-    { icon: Zap, title: "Automation", desc: "Intelligent process automation" },
-    { icon: Cpu, title: "AI Solutions", desc: "Custom ML/AI development" },
-    {
-      icon: Code,
-      title: "Product Engineering",
-      desc: "End-to-end development",
-    },
-    {
-      icon: Shield,
-      title: "Quality Assurance",
-      desc: "Comprehensive QA services",
-    },
-    { icon: Lightbulb, title: "Consulting", desc: "Strategic AI consulting" },
+    { icon: Lightbulb, title: "AI Strategy", desc: "Roadmaps, feasibility & pilots" },
+    { icon: Code, title: "ML Engineering", desc: "Model development & MLOps" },
+    { icon: Cpu, title: "Computer Vision", desc: "Image / video analytics" },
+    { icon: Zap, title: "Generative AI", desc: "LLMs, agents & assistants" },
+    { icon: Shield, title: "Data & Compliance", desc: "Secure data platforms & governance" },
   ];
 
   const partners = [
@@ -469,9 +396,7 @@ const LandingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-white">
-      {/* Cursor Following Purple Dot */}
-      <CursorDot />
+    <div className="min-h-screen text-white">
 
       {/* Particle Background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -489,137 +414,20 @@ const LandingPage = () => {
         ))}
       </div>
 
-      {/* Premium Floating Navigation - Always Visible */}
-      <header className="fixed top-0 left-0 right-0 z-50" data-testid="nav">
-        <div className="mx-auto px-4 sm:px-6 lg:px-10 pt-4 pb-2">
-          <nav className="premium-header px-6 sm:px-10 lg:px-12 py-3">
-            <div className="flex items-center justify-between">
-              {/* Logo */}
-              <a href="#" className="flex items-center group">
-                <img
-                  src={LOGO_URL}
-                  alt="Logo"
-                  className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
-                />
-              </a>
-              {/* Desktop Navigation */}
-
-              <div className="hidden lg:flex items-center gap-8">
-                <Link
-                  to="/Solutions"
-                  className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-                >
-                  Solutions
-                </Link>
-
-                <Link
-                  to="/about"
-                  className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-                >
-                  About Us
-                </Link>
-
-                <Link
-                  to="/case-studies"
-                  className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-                >
-                  Case Studies
-                </Link>
-
-                <Link
-                  to="/resources"
-                  className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-                >
-                  Resources
-                </Link>
-              </div>
-              {/* CTA Buttons */}
-              <div className="flex items-center gap-4">
-                <a
-                  href="#blog"
-                  className="hidden sm:inline-flex text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300"
-                >
-                  Contact
-                </a>
-                <Link to="/solutions">
-                  <Button
-                    className="btn-primary rounded-full px-5 sm:px-6 py-2.5 text-sm font-medium"
-                    data-testid="explore-btn"
-                  >
-                    Explore Solutions
-                  </Button>
-                </Link>
-                <button
-                  className="lg:hidden p-2 text-gray-300 hover:text-white transition-colors"
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                  {mobileMenuOpen ? (
-                    <X className="w-6 h-6" />
-                  ) : (
-                    <Menu className="w-6 h-6" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Navigation */}
-            {mobileMenuOpen && (
-              <div className="lg:hidden mt-4 pt-4 border-t border-purple-500/10">
-                <div className="flex flex-col gap-3">
-                  <Link
-                    to="/solutions"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors"
-                  >
-                    Solutions
-                  </Link>
-
-                  <Link
-                    to="/about"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors"
-                  >
-                    About Us
-                  </Link>
-
-                  <Link
-                    to="/case-studies"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors"
-                  >
-                    Case Studies
-                  </Link>
-
-                  <Link
-                    to="/resources"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors"
-                  >
-                    Resources
-                  </Link>
-
-                  <Link
-                    to="/contact"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm text-purple-400 hover:text-purple-300 py-1.5 transition-colors"
-                  >
-                    Contact Us
-                  </Link>
-                </div>
-              </div>
-            )}
-          </nav>
-        </div>
-      </header>
-
       {/* Hero Section with Carousel */}
       <section
         ref={heroRef}
-        className="relative min-h-screen overflow-hidden"
+        className="relative min-h-screen overflow-hidden -mt-20 md:-mt-20"
         data-testid="hero"
       >
         {/* Carousel Background Images */}
         <div className="absolute inset-0">
+          {/* Video background (large screens only) */}
+          <div className="hidden lg:block">
+            <VideoBackground src="/assets/138556-769988117.mp4" poster="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+          </div>
+
+          {/* Fallback carousel images (still used and will layer above/below video depending on CSS stacking) */}
           {heroSlides.map((slide, index) => (
             <div
               key={index}
@@ -634,13 +442,14 @@ const LandingPage = () => {
               />
             </div>
           ))}
+
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0F] via-[#0A0A0F]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F] via-transparent to-transparent" />
         </div>
 
         {/* Carousel Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-28 sm:pt-32 lg:pt-36 pb-32">
-          <div className="max-w-2xl">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-6 sm:px-10 lg:px-20 flex items-start md:items-center justify-center h-full pt-[10vh] md:pt-[30vh]">
+          <div className="max-w-6xl text-center mx-auto">
             {heroSlides.map((slide, index) => (
               <div
                 key={index}
@@ -655,7 +464,7 @@ const LandingPage = () => {
                   <br />
                   <span className="gradient-text">{slide.highlight}</span>
                 </h1>
-                <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-lg">
+                <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-3xl mx-auto">
                   {slide.subtitle}
                 </p>
               </div>
@@ -721,13 +530,7 @@ const LandingPage = () => {
           ))}
         </div>
 
-        {/* Floating Message Button */}
-        <button
-          onClick={() => setShowSupportBot(true)}
-          className="absolute bottom-10 right-10 w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-20 hidden"
-        >
-          <MessageCircle className="w-5 h-5 text-white" />
-        </button>
+
       </section>
 
       {/* AI-Powered Solutions Section */}
@@ -866,27 +669,24 @@ const LandingPage = () => {
       </section>
 
       {/* Trusted Collaborations */}
-      <section className="py-16 relative" data-testid="partners">
+      <section className="py-12 relative" data-testid="partners">
         <div className="max-w-7xl mx-auto px-6">
-          <AnimatedCard className="scroll-reveal">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center p-4">
-              <div>
-                <h3 className="font-space font-bold text-base">
-                  Trusted
-                  <br />
-                  Collaborat
-                  <br />
-                  ions
-                </h3>
-              </div>
+          <div className="text-center mb-8">
+            <h3 className="font-space font-bold text-lg">Trusted by enterprises & startups</h3>
+            <p className="text-gray-400 text-sm">We deliver secure, reliable AI systems for regulated industries and fast-moving product teams.</p>
+          </div>
+
+          <AnimatedCard className="overflow-hidden">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center p-6">
               {partners.map((partner, index) => (
-                <div key={index} className="text-center partner-logo">
-                  <p className="font-space font-bold text-lg text-gray-400">
-                    {partner.name}
-                  </p>
-                  {partner.subtext && (
-                    <p className="text-xs text-gray-600">{partner.subtext}</p>
-                  )}
+                <div key={index} className="flex items-center gap-3 p-3">
+                  <div className="w-12 h-12 rounded-full bg-[#111217] flex items-center justify-center text-sm font-semibold text-white">
+                    {partner.name.slice(0,2).toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm text-gray-200">{partner.name}</p>
+                    {partner.subtext && <p className="text-xs text-gray-500">{partner.subtext}</p>}
+                  </div>
                 </div>
               ))}
             </div>
@@ -934,40 +734,33 @@ const LandingPage = () => {
       </section>
 
       {/* What Our Clients Say */}
-      <section
-        id="programs"
-        className="py-20 relative"
-        data-testid="testimonials"
-      >
+      <section id="programs" className="py-20 relative" data-testid="testimonials">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="font-space font-bold text-2xl mb-3 scroll-reveal">
-              What Our <span className="gradient-text">Clients Say</span>
-            </h2>
+            <h2 className="font-space font-bold text-2xl mb-3 scroll-reveal">What Our <span className="gradient-text">Clients Say</span></h2>
+            <p className="text-gray-400 text-sm">Real outcomes — faster time-to-value and measurable ROI from practical AI deployments.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map((testimonial, index) => (
-              <AnimatedCard
-                key={index}
-                className={`testimonial-card scroll-reveal stagger-${index + 1}`}
-                delay={index * 0.1}
-              >
-                <div className="flex gap-1 mb-3 pt-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-3 h-3 fill-purple-400 text-purple-400"
-                    />
-                  ))}
+              <AnimatedCard key={index} className={`testimonial-card scroll-reveal stagger-${index + 1}`} delay={index * 0.1}>
+                <div className="flex items-center gap-3 mb-3 pt-2">
+                  <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-xs font-semibold">
+                    {testimonial.author.split(' ').map(n => n[0]).slice(0,2).join('').toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm">{testimonial.author}</p>
+                    <p className="text-xs text-purple-400">{testimonial.role} — <span className="text-gray-400">{testimonial.company}</span></p>
+                  </div>
                 </div>
-                <p className="text-gray-300 text-xs mb-4 leading-relaxed italic">
-                  "{testimonial.quote}"
-                </p>
+
                 <div className="border-t border-white/5 pt-3">
-                  <p className="font-semibold text-xs">{testimonial.author}</p>
-                  <p className="text-xs text-purple-400">{testimonial.role}</p>
-                  <p className="text-xs text-gray-500">{testimonial.company}</p>
+                  <div className="flex gap-1 mb-2">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 fill-purple-400 text-purple-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed italic">"{testimonial.quote}"</p>
                 </div>
               </AnimatedCard>
             ))}
@@ -1007,194 +800,25 @@ const LandingPage = () => {
       <section className="py-20 relative" data-testid="cta">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedCard className="scroll-reveal overflow-hidden">
-            <div className="grid lg:grid-cols-2">
-              <div className="relative h-56 lg:h-auto">
-                <img
-                  src="https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="AI Future"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#1C2128]/90 lg:bg-gradient-to-l" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="font-space font-bold text-xl text-center px-6">
-                    Unlock the Potential of AI for
-                    <br />
-                    <span className="gradient-text">Your Business</span>
-                  </h3>
+            <div className="grid lg:grid-cols-2 gap-6 items-center">
+              <div className="p-8 flex flex-col justify-center">
+                <h3 className="font-space font-bold text-2xl mb-4">Ready to turn AI into measurable business value?</h3>
+                <p className="text-gray-400 text-sm mb-6">Book a short discovery call and receive a tailored AI roadmap for your team.</p>
+                <div className="flex gap-4">
+                  <Link to="/contact"><Button className="btn-primary rounded-full px-6">Book a Call</Button></Link>
+                  <Link to="/solutions"><Button variant="outline" className="btn-outline rounded-full px-6">See Solutions</Button></Link>
                 </div>
               </div>
-              <div className="p-8 flex flex-col justify-center">
-                <p className="text-gray-400 text-sm mb-6">
-                  Discover how Namespace Consultants can accelerate your
-                  business growth with AI-driven solutions. Let us help you
-                  embark on your AI journey today.
-                </p>
-                <Button
-                  onClick={login}
-                  className="btn-outline rounded-full px-5 py-2 text-sm w-fit"
-                >
-                  Find AI Trends <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
+
+              <div className="relative h-56 lg:h-80 rounded-lg overflow-hidden">
+                <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="AI collaborative" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
             </div>
           </AnimatedCard>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer
-        id="blog"
-        className="bg-[#08080C] border-t border-white/5"
-        data-testid="footer"
-      >
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16">
-          {/* TOP GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {/* LOGO + CONTACT */}
-            <div>
-              <img src={LOGO_URL} alt="Logo" className="h-16 mb-6" />
-
-              <div className="space-y-3 text-sm text-gray-400">
-                <div className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 mt-1 text-purple-400" />
-                  <span>+91 9625061596</span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 mt-1 text-purple-400" />
-                  <span>kartikeya@namespaceconsultants.com</span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-1 text-purple-400" />
-                  <span className="leading-relaxed">
-                    PT-62/3, L.G.F., PT And DD Block,
-                    <br />
-                    Kalkaji, New Delhi, 110019
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* COMPANY */}
-            <div>
-              <h4 className="font-semibold mb-6">Company</h4>
-              <ul className="space-y-3 text-sm text-gray-400">
-                <li>
-                  <a href="/about" className="hover:text-purple-400">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="/contact" className="hover:text-purple-400">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#solutions" className="hover:text-purple-400">
-                    Solutions
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* LEGAL */}
-            <div>
-              <h4 className="font-semibold mb-6">Legal</h4>
-              <ul className="space-y-3 text-sm text-gray-400">
-                <li>
-                  <a href="/terms" className="hover:text-purple-400">
-                    Terms & Conditions
-                  </a>
-                </li>
-                <li>
-                  <a href="/privacy" className="hover:text-purple-400">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="/cookies" className="hover:text-purple-400">
-                    Cookie Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* NEWSLETTER */}
-            <div>
-              <h4 className="font-semibold mb-6">Newsletter</h4>
-
-              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={contactForm.email}
-                  onChange={(e) =>
-                    setContactForm({ ...contactForm, email: e.target.value })
-                  }
-                  className="bg-[#12121A] border-white/10 focus:border-purple-500 h-11"
-                />
-
-                <label className="flex items-center gap-2 text-xs text-gray-500">
-                  <input
-                    type="checkbox"
-                    checked={contactForm.subscribe}
-                    onChange={(e) =>
-                      setContactForm({
-                        ...contactForm,
-                        subscribe: e.target.checked,
-                      })
-                    }
-                    className="rounded border-gray-600 w-3 h-3"
-                  />
-                  Subscribe to updates
-                </label>
-
-                <Button
-                  type="submit"
-                  className="w-full rounded-full bg-purple-600 hover:bg-purple-700 text-sm py-2"
-                >
-                  Subscribe
-                </Button>
-              </form>
-            </div>
-          </div>
-
-          {/* BOTTOM BAR */}
-          <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            {/* SOCIAL */}
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-500">Follow us</span>
-
-              <div className="flex gap-3">
-                <a
-                  href="#"
-                  className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-500/20"
-                >
-                  <Linkedin className="w-4 h-4 text-gray-400" />
-                </a>
-                <a
-                  href="#"
-                  className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-500/20"
-                >
-                  <Facebook className="w-4 h-4 text-gray-400" />
-                </a>
-                <a
-                  href="#"
-                  className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-500/20"
-                >
-                  <Instagram className="w-4 h-4 text-gray-400" />
-                </a>
-              </div>
-            </div>
-
-            {/* COPYRIGHT */}
-            <p className="text-sm text-gray-500 text-center md:text-right">
-              © 2024 Namespace Consultants. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
 
       {/* Cookie Consent */}
       {showCookieConsent && (

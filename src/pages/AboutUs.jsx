@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { Button } from "@/components/ui/button";
 import {
-  ArrowLeft,
   Target,
   Eye,
   Lightbulb,
@@ -14,8 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const LOGO_URL =
-  "https://customer-assets.emergentagent.com/job_2e55a7fc-06f9-47db-b4a6-4600417bac65/artifacts/o8krn3xe_Free__2_-removebg-preview.png";
+
 
 const AboutUs = () => {
   const values = [
@@ -53,46 +52,8 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-white">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="mx-auto px-4 sm:px-6 lg:px-10 pt-4 pb-2">
-          <nav className="premium-header px-6 sm:px-10 lg:px-12 py-3">
-            <div className="flex items-center justify-between">
-              <Link to="/" className="flex items-center group">
-                <img
-                  src={LOGO_URL}
-                  alt="Logo"
-                  className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
-                />
-              </Link>
-              <div className="hidden md:flex items-center gap-8">
-                <Link
-                  to="/"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
-                >
-                  Home
-                </Link>
-                <Link to="/about" className="text-sm text-purple-400">
-                  About Us
-                </Link>
-                <Link
-                  to="/contact"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
-                >
-                  Contact
-                </Link>
-              </div>
-              <Link
-                to="/"
-                className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" /> Back
-              </Link>
-            </div>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen text-white">
+
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6">
@@ -274,34 +235,8 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-white/5 bg-[#08080C]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-sm text-gray-500">
-            © 2024 NameSpace Consultants. All rights reserved.
-          </p>
-          <div className="flex justify-center gap-6 mt-4">
-            <Link
-              to="/terms"
-              className="text-sm text-gray-400 hover:text-purple-400 transition-colors"
-            >
-              Terms
-            </Link>
-            <Link
-              to="/privacy"
-              className="text-sm text-gray-400 hover:text-purple-400 transition-colors"
-            >
-              Privacy
-            </Link>
-            <Link
-              to="/cookies"
-              className="text-sm text-gray-400 hover:text-purple-400 transition-colors"
-            >
-              Cookies
-            </Link>
-          </div>
-        </div>
-      </footer>
+
+
     </div>
   );
 };

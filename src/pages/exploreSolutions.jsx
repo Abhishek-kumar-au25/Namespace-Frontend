@@ -1,32 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LOGO_URL="https://customer-assets.emergentagent.com/job_2e55a7fc-06f9-47db-b4a6-4600417bac65/artifacts/o8krn3xe_Free__2_-removebg-preview.png";
+import { Button } from "@/components/ui/button";
+
+
 
 const ExploreSolutions=()=>(
-<div className="min-h-screen bg-[#0A0A0F] text-white">
+<div className="min-h-screen text-white">
 
-<header className="fixed top-0 left-0 right-0 z-50">
-<div className="mx-auto px-6 pt-4">
-<nav className="premium-header px-10 py-3">
-<Link to="/"><img src={LOGO_URL} className="h-12"/></Link>
-</nav>
-</div>
-</header>
+
 
 <section className="pt-32 text-center px-6">
-<h1 className="text-5xl font-bold">
-Explore <span className="gradient-text">Solutions</span>
-</h1>
-
-<p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-Deep dive into predictive analytics, automation, compliance AI and transformation solutions.
-</p>
+  <div className="max-w-3xl mx-auto">
+    <h1 className="text-4xl md:text-5xl font-bold mb-4">Explore Our Solutions in Depth</h1>
+    <p className="text-gray-400 mb-6">Select a solution to see detailed capabilities, example use-cases, and suggested architectures.</p>
+  </div>
 </section>
 
-<footer className="py-8 text-center bg-[#08080C] border-t border-white/5">
-© 2024 NameSpace Consultants
-</footer>
+<section className="py-20 px-6">
+  <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+    {Array.from({length:6}).map((_,i)=> (
+      <div key={i} className="glass-card p-6">
+        <div className="h-40 bg-zinc-900 rounded-md mb-4 flex items-center justify-center">Image / Visual
+        </div>
+        <h3 className="font-semibold mb-2">Solution Deep Dive {i+1}</h3>
+        <p className="text-gray-400 text-sm mb-3">Short summary of capabilities and business value.</p>
+        <ul className="text-gray-400 text-sm list-disc list-inside mb-4">
+          <li>Key capability A</li>
+          <li>Integration examples with existing systems</li>
+          <li>Estimated time-to-value: 8-12 weeks</li>
+        </ul>
+        <div className="text-right">
+          <Link to="/contact"><Button size="sm" className="rounded-full px-4">Contact Us</Button></Link>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+
 
 </div>
 );
