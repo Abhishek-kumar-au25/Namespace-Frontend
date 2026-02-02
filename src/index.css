@@ -645,6 +645,25 @@ body {
   opacity: 1;
 }
 
+/* Feature stack */
+.feature-stack-card {
+  border-radius: 18px;
+  padding: 14px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.03);
+  transform-origin: left center;
+}
+
+.feature-stack-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 40px rgba(0,0,0,0.6); }
+
+.partner-strip .partner-item { opacity: 0.9; transition: transform 0.3s ease, opacity 0.3s ease; }
+.partner-strip .partner-item:hover { transform: translateY(-6px); opacity: 1; }
+
+/* Stats counters - center spacing */
+.stats-animated { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+
+
+
 @layer base {
   :root {
     --background: 240 10% 4%;

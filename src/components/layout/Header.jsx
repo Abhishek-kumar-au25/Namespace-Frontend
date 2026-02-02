@@ -54,12 +54,12 @@ const Header = () => {
 
             {/* CTA Buttons */}
             <div className="flex items-center gap-4">
-              <a
-                href="#blog"
+              <Link
+                to="/contact"
                 className="hidden sm:inline-flex text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300"
               >
                 Contact
-              </a>
+              </Link>
               <Link to="/solutions">
                 <Button className="btn-primary rounded-full px-5 sm:px-6 py-2.5 text-sm font-medium" data-testid="explore-btn">
                   Explore Solutions

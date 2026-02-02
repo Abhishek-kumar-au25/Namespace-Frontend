@@ -41,6 +41,10 @@ import {
 } from "lucide-react";
 
 import VideoBackground from "@/components/layout/VideoBackground";
+import HeroAnimated from "@/components/landing/HeroAnimated";
+import FeatureStack from "@/components/landing/FeatureStack";
+import StatsCounters from "@/components/landing/StatsCounters";
+import PartnerStrip from "@/components/landing/PartnerStrip";
 
 // Simple Card Component (no rotating dot)
 const AnimatedCard = ({ children, className = "", delay = 0 }) => {
@@ -427,23 +431,26 @@ const LandingPage = () => {
             <VideoBackground src="/assets/138556-769988117.mp4" poster="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1600" />
           </div>
 
-          {/* Fallback carousel images (still used and will layer above/below video depending on CSS stacking) */}
-          {heroSlides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={slide.image}
-                alt=""
-                className="w-full h-full object-cover opacity-40"
-              />
-            </div>
-          ))}
+            {/* Particles / Mesh animation */}
+            <HeroAnimated />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0F] via-[#0A0A0F]/80 to-transparent" />
+            {/* Fallback carousel images (still used and will layer above/below video depending on CSS stacking) */}
+            {heroSlides.map((slide, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <img
+                  src={slide.image}
+                  alt=""
+                  className="w-full h-full object-cover opacity-40"
+                />
+              </div>
+            ))}
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0F] via-[#0A0A0F]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F] via-transparent to-transparent" />
         </div>
 
@@ -481,11 +488,7 @@ const LandingPage = () => {
                 Explore Solutions
               </Button>
               <Button
-                onClick={() =>
-                  document
-                    .querySelector("#blog")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => navigate('/contact')}
                 variant="outline"
                 className="rounded-full px-8 py-6 text-sm font-medium border-white/20 text-white hover:bg-white/10"
               >
@@ -564,29 +567,9 @@ const LandingPage = () => {
               </p>
             </AnimatedCard>
 
-            {/* Right - Feature Cards */}
+            {/* Right - Feature Cards (stacked floating variant) */}
             <div className="space-y-4">
-              {features.map((feature, index) => (
-                <AnimatedCard
-                  key={index}
-                  className={`scroll-reveal-right stagger-${index + 1}`}
-                  delay={index * 0.1}
-                >
-                  <div className="flex gap-4">
-                    <div className="feature-icon flex-shrink-0">
-                      <feature.icon className="w-5 h-5 text-purple-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sm mb-1 gradient-text">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-400 text-xs leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </AnimatedCard>
-              ))}
+              <FeatureStack features={features} />
             </div>
           </div>
         </div>
@@ -677,19 +660,7 @@ const LandingPage = () => {
           </div>
 
           <AnimatedCard className="overflow-hidden">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center p-6">
-              {partners.map((partner, index) => (
-                <div key={index} className="flex items-center gap-3 p-3">
-                  <div className="w-12 h-12 rounded-full bg-[#111217] flex items-center justify-center text-sm font-semibold text-white">
-                    {partner.name.slice(0,2).toUpperCase()}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-gray-200">{partner.name}</p>
-                    {partner.subtext && <p className="text-xs text-gray-500">{partner.subtext}</p>}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <PartnerStrip partners={partners} />
           </AnimatedCard>
         </div>
       </section>
@@ -701,15 +672,6 @@ const LandingPage = () => {
         data-testid="vision-mission"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="font-space font-bold text-2xl mb-3 scroll-reveal">
-              Our{" "}
-              <span className="gradient-text">Vision, Mission & Values</span>
-            </h2>
-            <p className="text-gray-400 text-sm max-w-xl mx-auto scroll-reveal">
-              Guided by purpose, driven by excellence
-            </p>
-          </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {visionMission.map((item, index) => (
