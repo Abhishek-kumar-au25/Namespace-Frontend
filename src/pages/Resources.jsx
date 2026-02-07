@@ -56,7 +56,7 @@ const Resources = () => {
   }, [allResources, filter, query]);
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-[var(--text-primary)]">
       {/* Hero */}
       <section className="pt-24 pb-8 px-6 text-center">
         <div className="max-w-4xl mx-auto">

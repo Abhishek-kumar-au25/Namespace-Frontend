@@ -44,6 +44,10 @@ import CaseStudies from "./pages/CaseStudies";
 import Resources from "./pages/Resources";
 import ExploreSolutions from "./pages/exploreSolutions";
 import CursorDot from "@/components/layout/CursorDot";
+import { ThemeProvider, useTheme } from "@/components/layout/ThemeProvider";
+import ThemeToggle from "@/components/layout/ThemeToggle";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import SupportBot from "@/components/layout/SupportBot";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
@@ -66,10 +70,10 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#09090B] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--page-bg-alt)] flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-zinc-400">Loading...</p>
+          <p className="text-zinc-500">Loading...</p>
         </div>
       </div>
     );
@@ -126,10 +130,10 @@ const AuthCallback = () => {
   }, [navigate, setUser, setLoading]);
 
   return (
-    <div className="min-h-screen bg-[#09090B] flex items-center justify-center">
+    <div className="min-h-screen bg-[var(--page-bg-alt)] flex items-center justify-center">
       <div className="text-center">
         <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-zinc-400">Authenticating...</p>
+        <p className="text-zinc-500">Authenticating...</p>
       </div>
     </div>
   );
@@ -278,14 +282,28 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <div className="App min-h-screen bg-[#09090B]">
-          <AppRouter />
-          <CursorDot />
-          <Toaster position="top-right" theme="dark" />
-        </div>
+        <ThemeProvider>
+          <AppShell />
+        </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+const AppShell = () => {
+  const { resolvedTheme } = useTheme();
+
+  return (
+    <div className="App min-h-screen bg-[var(--page-bg-alt)] text-[var(--text-primary)]">
+      <ScrollToTop />
+      <AppRouter />
+      <CursorDot />
+      <ThemeToggle />
+      <SupportBot />
+      <Toaster position="top-right" theme={resolvedTheme} />
+    </div>
+  );
+};
+

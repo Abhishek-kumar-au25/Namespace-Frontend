@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
-import { Cpu, Cloud, BarChart3, Shield, Zap } from "lucide-react";
+import { Cpu, Cloud, BarChart3, Shield, Zap, Brain } from "lucide-react";
 
 const Solutions = () => {
   const solutions = [
@@ -23,10 +23,15 @@ const Solutions = () => {
       desc: "Predict risks early",
     },
     { icon: Zap, title: "Process Automation", desc: "Automate workflows" },
+    {
+      icon: Brain,
+      title: "AI Strategy Consulting",
+      desc: "Roadmaps to adopt AI effectively",
+    },
   ];
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-[var(--text-primary)]">
       {/* HERO */}
       <section className="pt-32 text-center px-6">
         <div className="max-w-3xl mx-auto">
@@ -154,8 +159,6 @@ const Solutions = () => {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 };

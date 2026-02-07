@@ -1,4 +1,5 @@
 import React from "react";
+import { siteContact } from "@/config/site";
 import { Link } from "react-router-dom";
 
 import { Cookie } from "lucide-react";
@@ -7,7 +8,7 @@ import { Cookie } from "lucide-react";
 
 const CookiePolicy = () => {
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-[var(--text-primary)]">
       <Header />
 
       {/* Hero Section */}
@@ -181,9 +182,9 @@ const CookiePolicy = () => {
               </p>
               <div className="mt-4 p-4 bg-white/5 rounded-lg">
                 <p className="text-gray-300"><strong>NameSpace Consultants</strong></p>
-                <p className="text-gray-400">PT-62/3, L.G.F., PT And DD Block, Kalkaji, New Delhi, 110019</p>
-                <p className="text-gray-400">Email: kartikeya@namespaceconsultants.com</p>
-                <p className="text-gray-400">Phone: +91 9625061596</p>
+                <p className="text-gray-400">{siteContact.address.full}</p>
+                <p className="text-gray-400">Email: {siteContact.email}</p>
+                <p className="text-gray-400">Phone: {siteContact.phone}</p>
               </div>
             </div>
           </div>

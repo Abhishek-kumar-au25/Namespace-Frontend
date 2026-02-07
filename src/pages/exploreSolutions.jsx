@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 
 const ExploreSolutions=()=>(
-<div className="min-h-screen text-white">
+<div className="min-h-screen text-[var(--text-primary)]">
 
 
 

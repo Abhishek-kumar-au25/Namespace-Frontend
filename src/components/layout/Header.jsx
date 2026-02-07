@@ -8,99 +8,97 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50" data-testid="nav">
-      <div className="mx-auto px-4 sm:px-6 lg:px-10 pt-4 pb-2">
-        <nav className="premium-header px-6 sm:px-10 lg:px-12 py-3">
+    <header className="fixed top-0 left-0 right-0 z-[999]" data-testid="nav">
+      <div className="mx-auto px-4 sm:px-6 lg:px-10 pt-3.5 pb-1.5">
+        <nav className="bg-[var(--page-bg)] border border-[color:var(--border-subtle)] rounded-full px-5 sm:px-8 lg:px-12 py-2.5 shadow-md relative">
+
           <div className="flex items-center justify-between">
+
             {/* Logo */}
-            <Link to="/" className="flex items-center group">
+            <Link to="/" className="flex items-center">
               <img
                 src={LOCAL_LOGO}
                 alt="Logo"
-                className="h-16 w-auto object-contain"
+                className="h-14 sm:h-[72px] w-auto object-contain"
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              <Link
-                to="/solutions"
-                className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-              >
-                Solutions
-              </Link>
-
-              <Link
-                to="/about"
-                className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-              >
-                About Us
-              </Link>
-
-              <Link
-                to="/case-studies"
-                className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-              >
-                Case Studies
-              </Link>
-
-              <Link
-                to="/resources"
-                className="nav-link text-sm font-medium text-gray-300 hover:text-white transition duration-300"
-              >
-                Resources
-              </Link>
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex gap-8">
+              <Link to="/solutions" className="nav-link">Solutions</Link>
+              <Link to="/about" className="nav-link">About Us</Link>
+              <Link to="/case-studies" className="nav-link">Case Studies</Link>
+              <Link to="/resources" className="nav-link">Resources</Link>
             </div>
 
-            {/* CTA Buttons */}
+            {/* Right Side */}
             <div className="flex items-center gap-4">
-              <Link
-                to="/contact"
-                className="hidden sm:inline-flex text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300"
-              >
+
+              <Link to="/contact" className="hidden lg:block text-[var(--text-secondary)]">
                 Contact
               </Link>
-              <Link to="/solutions">
-                <Button className="btn-primary rounded-full px-5 sm:px-6 py-2.5 text-sm font-medium" data-testid="explore-btn">
+
+              <Link to="/solutions" className="hidden lg:block">
+                <Button className="btn-primary rounded-full px-5">
                   Explore Solutions
                 </Button>
               </Link>
+
+              {/* Hamburger */}
               <button
-                className="lg:hidden p-2 text-gray-300 hover:text-white transition-colors"
+                className="lg:hidden text-[var(--text-primary)]"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle menu"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X /> : <Menu />}
               </button>
             </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* ✅ FIXED MOBILE MENU */}
           {mobileMenuOpen && (
-            <div className="lg:hidden mt-4 pt-4 border-t border-purple-500/10">
-              <div className="flex flex-col gap-3">
-                <Link to="/solutions" onClick={() => setMobileMenuOpen(false)} className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors">
+            <div className="
+              lg:hidden
+              absolute top-full left-0 w-full
+              mt-3
+              rounded-xl
+              bg-[var(--menu-bg)]
+              backdrop-blur-2xl
+              border border-[color:var(--menu-border)]
+              shadow-2xl
+              z-[999]
+            ">
+              <div className="flex flex-col gap-5 p-6 text-[var(--text-primary)]">
+
+                <Link to="/solutions" onClick={()=>setMobileMenuOpen(false)}>
                   Solutions
                 </Link>
 
-                <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors">
+                <Link to="/about" onClick={()=>setMobileMenuOpen(false)}>
                   About Us
                 </Link>
 
-                <Link to="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors">
+                <Link to="/case-studies" onClick={()=>setMobileMenuOpen(false)}>
                   Case Studies
                 </Link>
 
-                <Link to="/resources" onClick={() => setMobileMenuOpen(false)} className="text-sm text-gray-300 hover:text-white py-1.5 transition-colors">
+                <Link to="/resources" onClick={()=>setMobileMenuOpen(false)}>
                   Resources
                 </Link>
 
-                <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-sm text-purple-400 hover:text-purple-300 py-1.5 transition-colors">
-                  Contact Us
+                <Link to="/contact" onClick={()=>setMobileMenuOpen(false)}>
+                  Contact
                 </Link>
+
+                <Link to="/solutions" onClick={()=>setMobileMenuOpen(false)}>
+                  <Button className="btn-primary w-full rounded-full mt-2">
+                    Explore Solutions
+                  </Button>
+                </Link>
+
               </div>
             </div>
           )}
+
         </nav>
       </div>
     </header>

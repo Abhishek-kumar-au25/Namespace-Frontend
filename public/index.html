@@ -5,9 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta name="description" content="A product of emergent.sh" />
-        <title>Namespace</title>
+        <title>Namespace Consultants</title>
+        <link rel="icon" type="image/png" href="%PUBLIC_URL%/logofav.png" />
+        <script>
+            (function () {
+                try {
+                    var stored = localStorage.getItem("namespace-theme");
+                    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                    var resolved = stored === "light" || stored === "dark"
+                        ? stored
+                        : (prefersDark ? "dark" : "light");
+                    document.documentElement.dataset.theme = resolved;
+                    document.documentElement.style.colorScheme = resolved;
+                    document.documentElement.classList.toggle("dark", resolved === "dark");
+                } catch (e) {
+                    // Ignore storage access errors
+                }
+            })();
+        </script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
-       
         <script>
             if (window.self !== window.top) {
                 var debugMonitorScript = document.createElement('script');

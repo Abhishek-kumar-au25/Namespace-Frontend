@@ -53,7 +53,7 @@ const DashboardLayout = ({ children, title, subtitle }) => {
       <Header />
 
       {/* Dashboard Navigation (compact bar under shared header) */}
-      <header className="fixed top-[72px] left-0 right-0 z-40 glass border-b border-purple-500/10" data-testid="dashboard-header">
+      <header className="fixed top-[64px] left-0 right-0 z-40 glass border-b border-purple-500/10" data-testid="dashboard-header">
         <div className="flex items-center justify-between px-6 py-2 max-w-7xl mx-auto">
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
@@ -65,7 +65,7 @@ const DashboardLayout = ({ children, title, subtitle }) => {
                   className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-purple-500/15 text-purple-400"
-                      : "text-zinc-400 hover:text-white hover:bg-white/5"
+                      : "text-zinc-400 hover:text-[var(--text-primary)] hover:bg-white/5"
                   }`}
                   data-testid={`nav-${item.path.slice(1)}`}
                 >
@@ -129,7 +129,7 @@ const DashboardLayout = ({ children, title, subtitle }) => {
                   className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-purple-500/15 text-purple-400"
-                      : "text-zinc-400 hover:text-white hover:bg-white/5"
+                      : "text-zinc-400 hover:text-[var(--text-primary)] hover:bg-white/5"
                   }`}
                 >
                   <item.icon className="w-5 h-5" />
@@ -142,7 +142,7 @@ const DashboardLayout = ({ children, title, subtitle }) => {
       </header>
 
       {/* Main Content */}
-      <main className="pt-24 min-h-screen">
+      <main className="pt-[88px] min-h-screen">
         <div className="p-6 lg:p-8">
           {/* Page Header */}
           {title && (

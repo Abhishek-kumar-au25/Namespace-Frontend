@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 // IMPORT IMAGES (use placeholder hosted images)
-const case1 = "https://images.unsplash.com/photo-1581093458799-1b7c4a5f7b28?auto=format&fit=crop&w=800&q=80";
+const case1 = "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80";
 const case2 = "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=800&q=80";
 const case3 = "https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=800&q=80";
 
@@ -30,7 +30,7 @@ const CaseStudies = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-[var(--text-primary)]">
 
 
 
@@ -66,7 +66,7 @@ const CaseStudies = () => {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                   <div>
-                    <h3 className="text-white font-semibold">
+                    <h3 className="text-[var(--text-primary)] font-semibold">
                       {c.title}
                     </h3>
                     <p className="text-sm text-purple-400">

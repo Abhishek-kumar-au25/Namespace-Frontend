@@ -1,14 +1,16 @@
-import { useTheme } from "next-themes"
+import { useTheme } from "@/components/layout/ThemeProvider"
 import { Toaster as Sonner, toast } from "sonner"
 
 const Toaster = ({
+  theme,
   ...props
 }) => {
-  const { theme = "system" } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const appliedTheme = theme || resolvedTheme || "dark"
 
   return (
     <Sonner
-      theme={theme}
+      theme={appliedTheme}
       className="toaster group"
       toastOptions={{
         classNames: {

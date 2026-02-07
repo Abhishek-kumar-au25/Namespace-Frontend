@@ -52,7 +52,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-[var(--text-primary)]">
 
 
       {/* Hero Section */}

@@ -2,8 +2,11 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 const assistantRouter = require('./routes/assistant');
+const contactRouter = require('./routes/contact');
 
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 dotenv.config();
 
 const app = express();
@@ -22,6 +25,7 @@ app.use(cors({ origin: FRONTEND_URL }));
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.use('/api/assistant', assistantRouter);
+app.use('/api/contact', contactRouter);
 
 app.listen(PORT, () => {
   console.log(`Namespace server running on port ${PORT} (frontend origin: ${FRONTEND_URL})`);
