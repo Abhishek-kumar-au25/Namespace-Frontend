@@ -1,5 +1,5 @@
 export const siteContact = {
-  phone: "+91 9625061596",
+  phone: "+91-9217951119",
   email: "info@namespaceconsultants.com",
   address: {
     line1: "PT-62/3, L.G.F., PT And DD Block,",

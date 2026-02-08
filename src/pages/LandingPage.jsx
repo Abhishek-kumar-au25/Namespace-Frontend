@@ -343,6 +343,15 @@ const LandingPage = () => {
       rating: 5,
       photo: "/assets/SourabhMittal.jpeg",
     },
+    {
+      quote:
+        "Namespace Consultants helped us modernize our analytics stack with practical AI that improved forecasting accuracy and operational visibility.",
+      author: "Kartikeya Goel",
+      role: "Managing Partner",
+      company: "Alka Trading Company",
+      rating: 5,
+      photo: null,
+    },
   ];
 
   const services = [
@@ -816,10 +825,8 @@ const LandingPage = () => {
                   key={index}
                   className="
               min-w-[260px] sm:min-w-[320px] lg:min-w-[360px]
-              glass-card p-6
+              glass-card testimonial-card p-6
               rounded-xl
-              hover:shadow-xl
-              transition-shadow duration-300
               snap-start
             "
                 >

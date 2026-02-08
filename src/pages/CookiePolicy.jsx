@@ -1,7 +1,5 @@
 import React from "react";
 import { siteContact } from "@/config/site";
-import { Link } from "react-router-dom";
-
 import { Cookie } from "lucide-react";
 
 
@@ -9,8 +7,6 @@ import { Cookie } from "lucide-react";
 const CookiePolicy = () => {
   return (
     <div className="min-h-screen text-[var(--text-primary)]">
-      <Header />
-
       {/* Hero Section */}
       <section className="pt-32 pb-12 px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -20,7 +16,7 @@ const CookiePolicy = () => {
           <h1 className="font-space font-bold text-4xl sm:text-5xl mb-4">
             Cookie <span className="gradient-text">Policy</span>
           </h1>
-          <p className="text-gray-400">Last updated: January 2024</p>
+          <p className="text-gray-400">Last updated: January 2026</p>
         </div>
       </section>
 
@@ -191,7 +187,6 @@ const CookiePolicy = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

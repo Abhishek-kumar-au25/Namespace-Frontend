@@ -705,6 +705,7 @@ body {
 /* Testimonial card - Liquid Glass */
 .testimonial-card {
   position: relative;
+  transition: none;
 }
 
 .testimonial-card::before {
@@ -717,6 +718,13 @@ body {
   color: var(--brand-primary);
   opacity: 0.2;
   line-height: 1;
+}
+
+.testimonial-card:hover {
+  transform: none;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 /* Partner logo */

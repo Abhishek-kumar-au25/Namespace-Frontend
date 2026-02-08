@@ -93,7 +93,7 @@ const Footer = () => {
                 <p className="text-[var(--text-primary)]">{siteContact.phone}</p>
               </div>
 
-              {/* <div className="flex gap-4">
+              {/* <div className="flex gap-4 color-[var(--text-primary)]">
                 <MailIcon className="w-4 h-4 text-[var(--text-primary)]" />
                 <p className="text-[var(--text-primary)]">
                   {siteContact.email}

@@ -20,7 +20,7 @@ const TermsConditions = () => {
           <h1 className="font-space font-bold text-4xl sm:text-5xl mb-4">
             Terms & <span className="gradient-text">Conditions</span>
           </h1>
-          <p className="text-gray-400">Last updated: January 2024</p>
+          <p className="text-gray-400">Last updated: January 2026</p>
         </div>
       </section>
 
