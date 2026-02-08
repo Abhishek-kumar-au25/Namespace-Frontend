@@ -84,11 +84,9 @@ const CaseStudies = () => {
                 </p>
 
                 <div className="text-right">
-                  <Link to="/contact">
-                    <Button size="sm" className="rounded-full px-4">
-                      Get the full case study
-                    </Button>
-                  </Link>
+                  <Button asChild size="sm" className="rounded-full px-4">
+                    <Link to="/contact">Get the full case study</Link>
+                  </Button>
                 </div>
               </div>
 
@@ -131,11 +129,9 @@ const CaseStudies = () => {
                 </p>
 
                 <div className="text-right">
-                  <Link to="/contact">
-                    <Button size="sm" className="rounded-full px-4">
-                      Request Full Report
-                    </Button>
-                  </Link>
+                  <Button asChild size="sm" className="rounded-full px-4">
+                    <Link to="/contact">Request Full Report</Link>
+                  </Button>
                 </div>
 
               </div>

@@ -39,7 +39,7 @@ const AnimatedCard = ({ children, className = "", delay = 0 }) => {
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const { user, login, loading } = useAuth();
+  const { user, loading } = useAuth();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [showCookieConsent, setShowCookieConsent] = useState(false);
@@ -285,34 +285,38 @@ const LandingPage = () => {
     {
       quote:
         "Namespace Consultants transformed our risk management approach. Their AI solutions reduced our fraud losses by 80% in just 6 months.",
-      author: "Rajesh Kumar",
+      author: "Anand Joshi",
       role: "CFO, Leading NBFC",
       company: "FinServ India",
       rating: 5,
+      photo: "/assets/AnandJoshi.jpeg",
     },
     {
       quote:
         "The audit automation platform they built saved us 2000+ man-hours annually. Exceptional blend of human insight and AI intelligence.",
-      author: "Priya Sharma",
+      author: "Madhav",
       role: "Head of Internal Audit",
       company: "Tech Unicorn",
       rating: 5,
+      photo: "/assets/Madhav.jpeg",
     },
     {
       quote:
         "Their predictive risk models helped us proactively identify compliance gaps before they became issues. True partners in our growth.",
-      author: "Amit Patel",
+      author: "Nitesh Garg",
       role: "CEO",
       company: "Fintech Startup",
       rating: 5,
+      photo: "/assets/NiteshGarg.jpeg",
     },
     {
       quote:
         "Working with Namespace was a game-changer for our data analytics. They delivered beyond our expectations with innovative AI solutions.",
-      author: "Sneha Reddy",
+      author: "Sourabh Mittal",
       role: "CTO",
       company: "E-commerce Platform",
       rating: 5,
+      photo: "/assets/SourabhMittal.jpeg",
     },
   ];
 
@@ -339,8 +343,8 @@ const LandingPage = () => {
     { name: "VELO CITY", subtext: null },
 
     // ✅ New Partners
-    // { name: "FinEdge Capital", subtext: "fintech" },
-    // { name: "DataNova Labs", subtext: "AI research" },
+    { name: "FinEdge Capital", subtext: null },
+    { name: "DataNova Labs", subtext: null },
     // { name: "CloudAxis", subtext: "cloud solutions" },
     // { name: "NeuroSpark", subtext: "AI automation" },
     // { name: "QuantBridge", subtext: "analytics" },
@@ -379,9 +383,7 @@ const LandingPage = () => {
     overflow-hidden
     flex items-center
     justify-center
-
-    /* 👇 Pull hero up behind fixed header */
-    -mt-20 md:-mt-24 lg:-mt-28
+    sm:-mt-20 md:-mt-24 lg:-mt-28
   "
         data-testid="hero"
       >
@@ -459,25 +461,20 @@ const LandingPage = () => {
           ))}
 
           {/* Buttons */}
-          <div className="flex justify-center gap-3">
-            <Button
-              onClick={() =>
-                document
-                  .querySelector("#solutions")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
-              className="btn-primary rounded-full px-6 py-3 text-sm"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              to="/solutions"
+              className="btn-primary rounded-full px-6 py-3 text-sm w-full sm:w-auto text-center"
             >
               Explore Solutions
-            </Button>
+            </Link>
 
-            <Button
-              onClick={() => navigate("/contact")}
-              variant="outline"
-              className="rounded-full px-6 py-3 text-sm border-white/20"
+            <Link
+              to="/contact"
+              className="rounded-full px-6 py-3 text-sm border border-white/20 w-full sm:w-auto text-center"
             >
               Contact Us
-            </Button>
+            </Link>
           </div>
         </div>
 
@@ -608,11 +605,13 @@ const LandingPage = () => {
                   success in the digital landscape.
                 </p>
                 <Button
-                  onClick={login}
+                  asChild
                   className="btn-outline rounded-full px-5 py-2 text-sm"
                 >
-                  Explore Our Solutions{" "}
-                  <ChevronRight className="ml-1 w-4 h-4" />
+                  <Link to="/explore-solutions">
+                    Explore Our Solutions{" "}
+                    <ChevronRight className="ml-1 w-4 h-4" />
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -908,20 +907,17 @@ const LandingPage = () => {
                   Book a short discovery call and receive a tailored AI roadmap
                   for your team.
                 </p>
-                <div className="flex gap-4">
-                  <Link to="/contact">
-                    <Button className="btn-primary rounded-full px-6">
-                      Book a Call
-                    </Button>
-                  </Link>
-                  <Link to="/solutions">
-                    <Button
-                      variant="outline"
-                      className="btn-outline rounded-full px-6"
-                    >
-                      See Solutions
-                    </Button>
-                  </Link>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild className="btn-primary rounded-full px-6">
+                    <Link to="/contact">Book a Call</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="btn-outline rounded-full px-6"
+                  >
+                    <Link to="/solutions">See Solutions</Link>
+                  </Button>
                 </div>
               </div>
 
@@ -952,19 +948,19 @@ const LandingPage = () => {
                 </h4>
                 <p className="text-xs text-gray-400">
                   We use cookies to enhance your browsing experience.
-                  <a
-                    href="/privacy"
+                  <Link
+                    to="/privacy"
                     className="text-purple-400 ml-1 hover:underline"
                   >
                     Privacy Policy
-                  </a>{" "}
+                  </Link>{" "}
                   |
-                  <a
-                    href="/cookies"
+                  <Link
+                    to="/cookies"
                     className="text-purple-400 ml-1 hover:underline"
                   >
                     Cookie Policy
-                  </a>
+                  </Link>
                 </p>
               </div>
               <div className="flex gap-2">

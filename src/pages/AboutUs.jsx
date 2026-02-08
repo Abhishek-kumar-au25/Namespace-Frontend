@@ -226,11 +226,14 @@ const AboutUs = () => {
               Let's discuss how our AI-powered solutions can help you achieve
               your business goals.
             </p>
-            <Link to="/contact">
-              <Button className="btn-primary rounded-full px-8 py-6 text-sm font-medium">
+            <Button
+              asChild
+              className="btn-primary rounded-full px-8 py-6 text-sm font-medium"
+            >
+              <Link to="/contact">
                 Get in Touch <ChevronRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

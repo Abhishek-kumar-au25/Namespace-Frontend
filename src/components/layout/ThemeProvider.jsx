@@ -6,12 +6,7 @@ const STORAGE_KEY = "namespace-theme";
 const DEFAULT_THEME = "dark";
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return DEFAULT_THEME;
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "light" || stored === "dark") return stored;
-    return DEFAULT_THEME;
-  });
+  const [theme, setTheme] = useState(() => DEFAULT_THEME);
 
   const [resolvedTheme, setResolvedTheme] = useState(() => theme);
 

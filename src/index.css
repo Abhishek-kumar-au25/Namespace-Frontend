@@ -69,11 +69,17 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: var(--page-bg);
   color: var(--text-primary);
-  overflow-x: hidden;
 }
 
 .font-space {
@@ -641,6 +647,35 @@ body {
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Hero banner image clarity */
+.hero-slide-image {
+  opacity: 0.4;
+  filter: saturate(1.05);
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 55%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+:root[data-theme="light"] .hero-slide-image {
+  opacity: 0.75;
+  filter: saturate(1) contrast(1.05);
+}
+
+:root[data-theme="light"] .hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.22) 55%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
 }
 
 

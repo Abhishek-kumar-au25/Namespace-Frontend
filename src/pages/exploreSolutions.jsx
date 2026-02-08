@@ -31,7 +31,9 @@ const ExploreSolutions=()=>(
           <li>Estimated time-to-value: 8-12 weeks</li>
         </ul>
         <div className="text-right">
-          <Link to="/contact"><Button size="sm" className="rounded-full px-4">Contact Us</Button></Link>
+          <Button asChild size="sm" className="rounded-full px-4">
+            <Link to="/contact">Contact Us</Link>
+          </Button>
         </div>
       </div>
     ))}

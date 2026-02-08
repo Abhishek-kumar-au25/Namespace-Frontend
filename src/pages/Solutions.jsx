@@ -43,17 +43,17 @@ const Solutions = () => {
             Tailored AI products & platforms to automate processes, reduce risk,
             and enable data-driven decisions across your organization.
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Link to="/explore-solutions">
-              <Button className="btn-primary rounded-full px-6 py-3">
-                Explore Solutions
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button variant="outline" className="rounded-full px-6 py-3">
-                Contact Us
-              </Button>
-            </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button asChild className="btn-primary rounded-full px-6 py-3">
+              <Link to="/explore-solutions">Explore Solutions</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-full px-6 py-3"
+            >
+              <Link to="/contact">Contact Us</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -74,11 +74,9 @@ const Solutions = () => {
               </h3>
               <p className="text-gray-400 text-sm text-center mb-4">{s.desc}</p>
               <div className="text-center">
-                <Link to="/contact">
-                  <Button size="sm" className="rounded-full px-4">
-                    Request Demo
-                  </Button>
-                </Link>
+                <Button asChild size="sm" className="rounded-full px-4">
+                  <Link to="/contact">Request Demo</Link>
+                </Button>
               </div>
             </div>
           ))}
@@ -134,11 +132,9 @@ const Solutions = () => {
                 improved detection latency from hours to minutes.
               </p>
               <div className="text-right">
-                <Link to="/case-studies">
-                  <Button size="sm" className="rounded-full px-4">
-                    Read Case Study
-                  </Button>
-                </Link>
+                <Button asChild size="sm" className="rounded-full px-4">
+                  <Link to="/case-studies">Read Case Study</Link>
+                </Button>
               </div>
             </div>
 
@@ -149,11 +145,9 @@ const Solutions = () => {
                 annually while improving coverage.
               </p>
               <div className="text-right">
-                <Link to="/case-studies">
-                  <Button size="sm" className="rounded-full px-4">
-                    Read Case Study
-                  </Button>
-                </Link>
+                <Button asChild size="sm" className="rounded-full px-4">
+                  <Link to="/case-studies">Read Case Study</Link>
+                </Button>
               </div>
             </div>
           </div>

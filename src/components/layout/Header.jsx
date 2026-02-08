@@ -9,8 +9,8 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[999]" data-testid="nav">
-      <div className="mx-auto px-4 sm:px-6 lg:px-10 pt-3.5 pb-1.5">
-        <nav className="bg-[var(--page-bg)] border border-[color:var(--border-subtle)] rounded-full px-5 sm:px-8 lg:px-12 py-2.5 shadow-md relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 pt-3.5 pb-1.5">
+        <nav className="bg-[var(--page-bg)] border border-[color:var(--border-subtle)] rounded-full px-4 sm:px-8 lg:px-12 py-2.5 shadow-md relative">
 
           <div className="flex items-center justify-between">
 
@@ -19,7 +19,7 @@ const Header = () => {
               <img
                 src={LOCAL_LOGO}
                 alt="Logo"
-                className="h-14 sm:h-[72px] w-auto object-contain"
+                className="h-12 sm:h-[72px] w-auto max-w-[160px] sm:max-w-none object-contain"
               />
             </Link>
 
@@ -38,11 +38,12 @@ const Header = () => {
                 Contact
               </Link>
 
-              <Link to="/solutions" className="hidden lg:block">
-                <Button className="btn-primary rounded-full px-5">
-                  Explore Solutions
-                </Button>
-              </Link>
+              <Button
+                asChild
+                className="btn-primary rounded-full px-5 hidden lg:inline-flex"
+              >
+                <Link to="/solutions">Explore Solutions</Link>
+              </Button>
 
               {/* Hamburger */}
               <button
@@ -89,11 +90,14 @@ const Header = () => {
                   Contact
                 </Link>
 
-                <Link to="/solutions" onClick={()=>setMobileMenuOpen(false)}>
-                  <Button className="btn-primary w-full rounded-full mt-2">
+                <Button
+                  asChild
+                  className="btn-primary w-full rounded-full mt-2"
+                >
+                  <Link to="/solutions" onClick={()=>setMobileMenuOpen(false)}>
                     Explore Solutions
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
 
               </div>
             </div>

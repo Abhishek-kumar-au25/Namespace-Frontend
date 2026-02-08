@@ -170,11 +170,9 @@ const Contact = () => (
           </div>
 
           <div className="mt-4">
-            <Link to="/contact">
-              <Button className="btn-primary rounded-full px-6 w-full">
-                Book a Discovery Call
-              </Button>
-            </Link>
+            <Button asChild className="btn-primary rounded-full px-6 w-full">
+              <Link to="/contact">Book a Discovery Call</Link>
+            </Button>
 
             <p className="text-xs text-gray-500 mt-3">
               Pick a time that works and we'll prepare a tailored agenda.
