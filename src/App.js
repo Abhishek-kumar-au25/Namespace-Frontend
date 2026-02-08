@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-} from "react";
+import React from "react";
 import "@/App.css";
 import "@fontsource/manrope/400.css";
 import "@fontsource/manrope/600.css";
@@ -13,17 +7,8 @@ import "@fontsource/manrope/800.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/jetbrains-mono/400.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
-import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
-import { toast } from "sonner";
 
 // Pages
 import LandingPage from "./pages/LandingPage";
@@ -53,155 +38,18 @@ import SupportBot from "@/components/layout/SupportBot";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
 
-// Auth Context
-const AuthContext = createContext(null);
-
-export const useAuth = () => useContext(AuthContext);
-
-// Axios interceptor for auth
-axios.interceptors.request.use((config) => {
-  config.withCredentials = true;
-  return config;
-});
-
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
-  const location = useLocation();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-[var(--page-bg-alt)] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-zinc-500">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <Navigate to="/" state={{ from: location }} replace />;
-  }
-
-  return children;
-};
-
-// Auth Callback Component
-const AuthCallback = () => {
-  const navigate = useNavigate();
-  const { setUser, setLoading } = useAuth();
-  const hasProcessed = useRef(false);
-
-  useEffect(() => {
-    if (hasProcessed.current) return;
-    hasProcessed.current = true;
-
-    const processAuth = async () => {
-      const hash = window.location.hash;
-      const sessionIdMatch = hash.match(/session_id=([^&]+)/);
-
-      if (sessionIdMatch) {
-        const sessionId = sessionIdMatch[1];
-        try {
-          setLoading(true);
-          const response = await axios.post(`${API}/auth/session`, {
-            session_id: sessionId,
-          });
-
-          setUser(response.data.user);
-          toast.success("Welcome to Loss Mitigation & Audit POC!");
-          navigate("/dashboard", {
-            replace: true,
-            state: { user: response.data.user },
-          });
-        } catch (error) {
-          console.error("Auth error:", error);
-          toast.error("Authentication failed. Please try again.");
-          navigate("/", { replace: true });
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        navigate("/", { replace: true });
-      }
-    };
-
-    processAuth();
-  }, [navigate, setUser, setLoading]);
-
-  return (
-    <div className="min-h-screen bg-[var(--page-bg-alt)] flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-zinc-500">Authenticating...</p>
-      </div>
-    </div>
-  );
-};
-
-// Auth Provider
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      // Skip if URL has session_id (will be handled by AuthCallback)
-      if (window.location.hash?.includes("session_id=")) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const response = await axios.get(`${API}/auth/me`);
-        setUser(response.data);
-      } catch (error) {
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    checkAuth();
-  }, []);
-
-  const login = () => {
-    // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
-    const redirectUrl = window.location.origin + "/dashboard";
-    window.location.href = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(redirectUrl)}`;
-  };
-
-  const logout = async () => {
-    try {
-      await axios.post(`${API}/auth/logout`);
-      setUser(null);
-      toast.success("Logged out successfully");
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
-  };
-
-  return (
-    <AuthContext.Provider
-      value={{ user, setUser, loading, setLoading, login, logout }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
-};
+// Auth / login flows are currently disabled.
+// The following blocks were commented out per request.
+// - Auth Context
+// - Axios auth interceptor
+// - ProtectedRoute
+// - AuthCallback
+// - AuthProvider
 
 // App Router Component
 import SiteLayout from "@/components/layout/SiteLayout";
 
 const AppRouter = () => {
-  const location = useLocation();
-
-  // Check URL fragment for session_id synchronously during render
-  if (location.hash?.includes("session_id=")) {
-    return <AuthCallback />;
-  }
-
   return (
     <Routes>
       {/* Public pages wrapped by SiteLayout to provide identical header/footer */}
@@ -219,63 +67,14 @@ const AppRouter = () => {
         <Route path="/explore-solutions" element={<ExploreSolutions />} />
       </Route>
 
-      {/* Protected / dashboard style routes remain separate */}
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/risks"
-        element={
-          <ProtectedRoute>
-            <RiskAssessment />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/audit"
-        element={
-          <ProtectedRoute>
-            <AuditWorkflow />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/kpis"
-        element={
-          <ProtectedRoute>
-            <KPIMetrics />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/reports"
-        element={
-          <ProtectedRoute>
-            <Reports />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/process-flows"
-        element={
-          <ProtectedRoute>
-            <ProcessFlows />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/roadmap"
-        element={
-          <ProtectedRoute>
-            <Roadmap />
-          </ProtectedRoute>
-        }
-      />
+      {/* Dashboard style routes (no auth gating) */}
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/risks" element={<RiskAssessment />} />
+      <Route path="/audit" element={<AuditWorkflow />} />
+      <Route path="/kpis" element={<KPIMetrics />} />
+      <Route path="/reports" element={<Reports />} />
+      <Route path="/process-flows" element={<ProcessFlows />} />
+      <Route path="/roadmap" element={<Roadmap />} />
     </Routes>
   );
 };
@@ -283,11 +82,9 @@ const AppRouter = () => {
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ThemeProvider>
-          <AppShell />
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AppShell />
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

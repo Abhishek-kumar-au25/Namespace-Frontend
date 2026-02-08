@@ -1,15 +1,6 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "@/App";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Shield,
   LayoutDashboard,
@@ -19,8 +10,6 @@ import {
   FileText,
   GitBranch,
   Calendar,
-  LogOut,
-  ChevronDown,
   Menu,
   X
 } from "lucide-react";
@@ -38,15 +27,14 @@ const navItems = [
 ];
 
 const DashboardLayout = ({ children, title, subtitle }) => {
-  const { user, logout } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
-  const handleLogout = async () => {
-    await logout();
-    navigate("/");
-  };
+  React.useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Login/logout removed.
 
   return (
     <div className="min-h-screen">
@@ -87,33 +75,7 @@ const DashboardLayout = ({ children, title, subtitle }) => {
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-2 px-2" data-testid="user-menu-btn">
-                  <Avatar className="w-8 h-8">
-                    <AvatarImage src={user?.picture} />
-                    <AvatarFallback className="bg-purple-500 text-white text-sm">{user?.name?.charAt(0) || "U"}</AvatarFallback>
-                  </Avatar>
-                  <span className="hidden md:block text-sm font-medium">{user?.name}</span>
-                  <ChevronDown className="w-4 h-4 text-zinc-400" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-zinc-900 border-zinc-800">
-                <div className="px-3 py-2">
-                  <p className="text-sm font-medium">{user?.name}</p>
-                  <p className="text-xs text-zinc-400">{user?.email}</p>
-                </div>
-                <DropdownMenuSeparator className="bg-zinc-800" />
-                <DropdownMenuItem 
-                  onClick={handleLogout}
-                  className="text-red-400 cursor-pointer"
-                  data-testid="logout-btn"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* User auth menu removed */}
           </div>
         </div>
 

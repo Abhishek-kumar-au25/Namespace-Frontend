@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/App";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
@@ -38,8 +36,6 @@ const AnimatedCard = ({ children, className = "", delay = 0 }) => {
 };
 
 const LandingPage = () => {
-  const navigate = useNavigate();
-  const { user, loading } = useAuth();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [showCookieConsent, setShowCookieConsent] = useState(false);
@@ -136,11 +132,7 @@ const LandingPage = () => {
 
   const observerRef = useRef(null);
 
-  useEffect(() => {
-    if (user && !loading) {
-      navigate("/dashboard");
-    }
-  }, [user, loading, navigate]);
+  // Login/signup flow removed; no redirect on load.
 
   // Auto-slide carousel functionality
   useEffect(() => {

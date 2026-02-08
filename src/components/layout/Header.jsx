@@ -1,16 +1,28 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, Menu } from "lucide-react";
 import LOCAL_LOGO from "@/assets/Free__2_-removebg-preview.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[999]" data-testid="nav">
+      {mobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-[900]"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 pt-3.5 pb-1.5">
-        <nav className="bg-[var(--page-bg)] border border-[color:var(--border-subtle)] rounded-full px-4 sm:px-8 lg:px-12 py-2.5 shadow-md relative">
+        <nav className="bg-[var(--page-bg)] border border-[color:var(--border-subtle)] rounded-full px-4 sm:px-8 lg:px-12 py-2.5 shadow-md relative z-[1000]">
 
           <div className="flex items-center justify-between">
 
@@ -66,7 +78,7 @@ const Header = () => {
               backdrop-blur-2xl
               border border-[color:var(--menu-border)]
               shadow-2xl
-              z-[999]
+              z-[1001]
             ">
               <div className="flex flex-col gap-5 p-6 text-[var(--text-primary)]">
 
