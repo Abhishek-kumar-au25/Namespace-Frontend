@@ -47,6 +47,8 @@ const LandingPage = () => {
   const resumeTimeoutRef = useRef(null);
   const heroRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const touchStartXRef = useRef(null);
+  const touchStartYRef = useRef(null);
 
   // Hero carousel slides with AI-related images (expanded collection)
   const heroSlides = [
@@ -184,6 +186,37 @@ const LandingPage = () => {
 
   const prevSlide = () => {
     goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const handleHeroTouchStart = (event) => {
+    if (!event.touches || event.touches.length !== 1) return;
+    const touch = event.touches[0];
+    touchStartXRef.current = touch.clientX;
+    touchStartYRef.current = touch.clientY;
+  };
+
+  const handleHeroTouchEnd = (event) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) {
+      return;
+    }
+    const touch = event.changedTouches?.[0];
+    if (!touch) return;
+
+    const deltaX = touch.clientX - touchStartXRef.current;
+    const deltaY = touch.clientY - touchStartYRef.current;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (absX > 50 && absX > absY) {
+      if (deltaX < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
   };
 
   const scrollTestimonials = (direction) => {
@@ -370,6 +403,8 @@ const LandingPage = () => {
     -mt-20 md:-mt-24 lg:-mt-28
   "
         data-testid="hero"
+        onTouchStart={handleHeroTouchStart}
+        onTouchEnd={handleHeroTouchEnd}
       >
         {/* Backgrounds */}
         <div className="absolute inset-0">
