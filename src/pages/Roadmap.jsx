@@ -170,7 +170,7 @@ const Roadmap = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                 {/* Objectives */}
                 <div>
                   <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -248,7 +248,7 @@ const Roadmap = () => {
           <CardTitle className="font-heading text-xl">Expected Business Impact</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {businessImpact.map((impact) => (
               <div key={impact.metric} className="p-4 bg-zinc-800/50 rounded-lg">
                 <p className="text-sm text-zinc-400 mb-2">{impact.metric}</p>

@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Linkedin,
-  Twitter,
-  Facebook,
-  Instagram,
-  Phone,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import { Linkedin, Facebook, Instagram } from "lucide-react";
 import axios from "axios";
 import { API } from "@/App";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import LOCAL_LOGO from "@/assets/Free__2_-removebg-preview.png";
+import { ReactComponent as PhoneIcon } from "@/assets/call.svg";
+import { ReactComponent as MailIcon } from "@/assets/mail.svg";
+import { ReactComponent as LocationIcon } from "@/assets/location.svg";
 import { siteContact } from "@/config/site";
 
 const Footer = () => {
@@ -94,25 +89,26 @@ const Footer = () => {
 
             <div className="space-y-4 text-sm text-gray-400">
               <div className="flex gap-4">
-                <Phone className="w-4 h-4 text-[var(--text-primary)]" />
+                <PhoneIcon className="w-4 h-4 text-[var(--text-primary)]" />
                 <p className="text-[var(--text-primary)]">{siteContact.phone}</p>
               </div>
 
-              <div className="flex gap-4">
-                <Mail className="w-4 h-4 text-[var(--text-primary)]" />
+              {/* <div className="flex gap-4">
+                <MailIcon className="w-4 h-4 text-[var(--text-primary)]" />
                 <p className="text-[var(--text-primary)]">
                   {siteContact.email}
                 </p>
-              </div>
+              </div> */}
 
               <div className="flex gap-4">
-                <MapPin className="w-4 h-4 text-[var(--text-primary)]" />
+                <LocationIcon className="w-4 h-4 text-[var(--text-primary)]" />
                 <p className="text-gray-300">
                   {siteContact.address.line1}
                   <br />
                   {siteContact.address.line2}
                 </p>
               </div>
+              
             </div>
           </div>
 

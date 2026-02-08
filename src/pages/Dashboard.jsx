@@ -80,7 +80,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <DashboardLayout title="Dashboard" subtitle="Executive Overview">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="h-32 skeleton rounded-xl"></div>
           ))}
@@ -92,7 +92,7 @@ const Dashboard = () => {
   return (
     <DashboardLayout title="Dashboard" subtitle="Executive Overview">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" data-testid="kpi-cards">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8" data-testid="kpi-cards">
         <Card className="glass border-white/10 card-hover" data-testid="total-risks-card">
           <CardContent className="p-6">
             <div className="flex items-start justify-between">
@@ -168,7 +168,7 @@ const Dashboard = () => {
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
         {/* Risk Trend Chart */}
         <Card className="glass border-white/10 lg:col-span-2" data-testid="risk-trend-chart">
           <CardHeader>
@@ -258,7 +258,7 @@ const Dashboard = () => {
       </div>
 
       {/* Bottom Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Audit Tasks by Phase */}
         <Card className="glass border-white/10" data-testid="audit-phase-chart">
           <CardHeader>

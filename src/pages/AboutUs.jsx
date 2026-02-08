@@ -133,7 +133,7 @@ const AboutUs = () => {
               company.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {values.map((value, index) => (
               <div key={index} className="glass-card p-6 text-center">
                 <div className="feature-icon mx-auto mb-4">

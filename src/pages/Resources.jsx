@@ -84,7 +84,7 @@ const Resources = () => {
       {/* Grid of resources */}
       <section className="py-12 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filtered.slice(0, visibleCount).map((r, i) => (
               <article key={i} className="glass-card overflow-hidden flex flex-col h-full">
                 <div className="h-40 w-full overflow-hidden">
@@ -123,7 +123,7 @@ const Resources = () => {
 
       {/* Featured + subscribe */}
       <section className="py-12 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6 items-center">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-4 sm:gap-6 items-center">
           <div className="liquid-glass p-6">
             <h4 className="font-semibold mb-2">Featured Resource</h4>
             <p className="text-gray-400 text-sm mb-4">AI Risk Whitepaper — practical steps to evaluate AI risk in your organization.</p>

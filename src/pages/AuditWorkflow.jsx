@@ -308,7 +308,7 @@ const AuditWorkflow = () => {
       </div>
 
       {/* Kanban-style Board */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-testid="task-board">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" data-testid="task-board">
         {PHASES.map((phase) => {
           const PhaseIcon = getPhaseIcon(phase);
           const phaseTasks = getTasksByPhase(phase);

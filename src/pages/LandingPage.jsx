@@ -357,22 +357,6 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen text-[var(--text-primary)]">
-      {/* Particle Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="particle-dot"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Hero Section with Carousel */}
 
       <section
@@ -383,7 +367,7 @@ const LandingPage = () => {
     overflow-hidden
     flex items-center
     justify-center
-    sm:-mt-20 md:-mt-24 lg:-mt-28
+    -mt-20 md:-mt-24 lg:-mt-28
   "
         data-testid="hero"
       >
@@ -535,7 +519,7 @@ const LandingPage = () => {
         data-testid="solutions"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Left - Image Card */}
             <AnimatedCard className="scroll-reveal-left" delay={0}>
               <div className="relative h-56 mb-6 rounded-xl overflow-hidden">
@@ -571,7 +555,7 @@ const LandingPage = () => {
       <section className="py-20 relative" data-testid="competitive-edge">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedCard className="scroll-reveal">
-            <div className="grid lg:grid-cols-2 gap-12 items-center p-4">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center p-4">
               {/* Circular Visual */}
               <div className="relative flex items-center justify-center py-12 lg:order-2">
                 <div className="circular-visual w-64 h-64 lg:w-80 lg:h-80 relative">
@@ -626,7 +610,7 @@ const LandingPage = () => {
             Leading with <span className="gradient-text">AI Innovation</span>
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -714,6 +698,12 @@ const LandingPage = () => {
               </div>
             </div>
           </AnimatedCard>
+
+          <div className="mt-8 flex justify-center">
+            <Button asChild className="btn-outline rounded-full px-6">
+              <Link to="/our-clients">See Our Clients</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -724,7 +714,7 @@ const LandingPage = () => {
         data-testid="vision-mission"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
             {visionMission.map((item, index) => (
               <AnimatedCard
                 key={index}
@@ -876,7 +866,7 @@ const LandingPage = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
             {services.map((service, index) => (
               <AnimatedCard
                 key={index}
@@ -898,7 +888,7 @@ const LandingPage = () => {
       <section className="py-20 relative" data-testid="cta">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedCard className="scroll-reveal overflow-hidden">
-            <div className="grid lg:grid-cols-2 gap-6 items-center">
+            <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 items-center">
               <div className="p-8 flex flex-col justify-center">
                 <h3 className="font-space font-bold text-2xl mb-4">
                   Ready to turn AI into measurable business value?

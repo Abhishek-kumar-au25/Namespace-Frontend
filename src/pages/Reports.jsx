@@ -85,7 +85,7 @@ const Reports = () => {
       title="Reports" 
       subtitle="Generate and download comprehensive reports"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-testid="report-cards">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6" data-testid="report-cards">
         {reportTypes.map((report, index) => (
           <Card 
             key={index} 
@@ -140,7 +140,7 @@ const Reports = () => {
           <CardTitle className="font-heading text-xl">Report Contents</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <div className="space-y-3">
               <h3 className="font-semibold text-blue-500">Executive Summary</h3>
               <ul className="space-y-2 text-sm text-zinc-400">

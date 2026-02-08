@@ -18,7 +18,7 @@ const ExploreSolutions=()=>(
 </section>
 
 <section className="py-20 px-6">
-  <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+  <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-4 sm:gap-6">
     {Array.from({length:6}).map((_,i)=> (
       <div key={i} className="glass-card p-6">
         <div className="h-40 bg-zinc-900 rounded-md mb-4 flex items-center justify-center">Image / Visual

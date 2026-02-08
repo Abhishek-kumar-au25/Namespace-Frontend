@@ -51,7 +51,7 @@ const CaseStudies = () => {
 
       {/* CASE CARDS */}
       <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-4 sm:gap-6">
 
           {cases.map((c, i) => (
             <div key={i} className="glass-card p-0 overflow-hidden">
@@ -109,7 +109,7 @@ const CaseStudies = () => {
             approach, and measurable outcomes.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
 
             {cases.map((c, i) => (
               <div key={`d-${i}`} className="glass-card p-6">

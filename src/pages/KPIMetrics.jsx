@@ -155,7 +155,7 @@ const KPIMetrics = () => {
       subtitle="Track and measure success indicators"
     >
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" data-testid="kpi-summary">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8" data-testid="kpi-summary">
         <Card className="glass border-white/10">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -200,7 +200,7 @@ const KPIMetrics = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
         <Card className="glass border-white/10" data-testid="kpi-bar-chart">
           <CardHeader>
             <CardTitle className="font-heading text-lg">KPI Performance vs Target</CardTitle>

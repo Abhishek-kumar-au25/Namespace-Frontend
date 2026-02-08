@@ -117,7 +117,7 @@ const Contact = () => (
     {/* Contact Methods */}
     {/* Contact Methods */}
     <section className="px-6 pb-12">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 sm:gap-6">
         {/* CARD 1 */}
         <div className="glass-card p-6 flex flex-col justify-between h-full">
           <div className="flex items-start gap-4">

@@ -3,7 +3,7 @@ import React from 'react';
 const FeatureStack = ({ features = [] }) => {
   return (
     <div className="relative h-full">
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-0">
         {features.map((f, i) => (
           <div
             key={i}

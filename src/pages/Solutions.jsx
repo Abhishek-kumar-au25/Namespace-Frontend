@@ -60,7 +60,7 @@ const Solutions = () => {
 
       {/* SOLUTIONS GRID */}
       <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-4 sm:gap-6">
           {solutions.map((s, i) => (
             <div
               key={i}
@@ -95,7 +95,7 @@ const Solutions = () => {
               scalable AI platforms — enabling faster decision-making, reduced
               operational costs and improved compliance.
             </p>
-            <div className="grid sm:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
               <div className="glass-card p-6">
                 <h3 className="font-semibold mb-2">Faster Decisions</h3>
                 <p className="text-gray-400 text-sm">
@@ -124,7 +124,7 @@ const Solutions = () => {
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-xl font-semibold mb-6">Featured Outcomes</h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
             <div className="glass-card p-6">
               <h4 className="font-semibold mb-2">Fraud Detection</h4>
               <p className="text-gray-400 text-sm mb-4">

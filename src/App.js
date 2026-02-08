@@ -43,6 +43,7 @@ import CookiePolicy from "./pages/CookiePolicy";
 import CaseStudies from "./pages/CaseStudies";
 import Resources from "./pages/Resources";
 import ExploreSolutions from "./pages/exploreSolutions";
+import OurClients from "./pages/OurClients";
 import CursorDot from "@/components/layout/CursorDot";
 import { ThemeProvider, useTheme } from "@/components/layout/ThemeProvider";
 import ThemeToggle from "@/components/layout/ThemeToggle";
@@ -212,6 +213,7 @@ const AppRouter = () => {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/cookies" element={<CookiePolicy />} />
         <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/our-clients" element={<OurClients />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/explore-solutions" element={<ExploreSolutions />} />
