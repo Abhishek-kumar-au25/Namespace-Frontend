@@ -972,7 +972,7 @@ const LandingPage = () => {
           className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-slide-up"
           data-testid="cookie-consent"
         >
-          <div className="max-w-3xl mx-auto glass rounded-xl p-5">
+          <div className="max-w-3xl mx-auto bg-[#0B0B12] border border-white/10 rounded-xl p-5 shadow-lg">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
               <div className="flex-1">
                 <h4 className="font-semibold text-sm mb-1">

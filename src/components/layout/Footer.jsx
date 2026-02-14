@@ -244,7 +244,15 @@ const Footer = () => {
           <div className="flex gap-3">
             <Linkedin className="w-4 h-4 text-gray-400" />
             <Facebook className="w-4 h-4 text-gray-400" />
-            <Instagram className="w-4 h-4 text-gray-400" />
+            <a
+              href="https://www.instagram.com/namespaceconsultants/"
+              aria-label="Namespace Consultants on Instagram"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center"
+            >
+              <Instagram className="w-4 h-4 text-gray-400" />
+            </a>
           </div>
 
           <p className="text-sm text-gray-500">
