@@ -291,7 +291,7 @@ const Contact = () => {
     {/* Contact Methods */}
     {/* Contact Methods */}
     <section className="px-6 pb-12">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 sm:gap-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         {/* CARD 1 */}
         <div className="glass-card p-6 flex flex-col justify-between h-full">
           <div className="flex items-start gap-4">
@@ -319,7 +319,7 @@ const Contact = () => {
               <Phone className="w-5 h-5 text-[var(--text-primary)]" />
             </div>
 
-            <div>
+            <div className="min-w-0">
               <p className="text-sm text-gray-400">Call Us</p>
               <p className="font-semibold mt-1">{siteContact.phone}</p>
             </div>
@@ -337,7 +337,7 @@ const Contact = () => {
               <Calendar className="w-5 h-5 text-[var(--text-primary)]" />
             </div>
 
-            <div>
+            <div className="min-w-0">
               <p className="text-sm text-gray-400">Schedule a Meeting</p>
               <p className="font-semibold mt-1">Book a Discovery Call</p>
             </div>

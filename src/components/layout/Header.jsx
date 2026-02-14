@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, Menu } from "lucide-react";
-import LOCAL_LOGO from "@/assets/Free__2_-removebg-preview.png";
+const LOGO_SRC = "/assets/Free__2_-removebg-preview.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,7 +29,7 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center">
               <img
-                src={LOCAL_LOGO}
+                src={LOGO_SRC}
                 alt="Logo"
                 className="h-12 sm:h-[72px] w-auto max-w-[160px] sm:max-w-none object-contain"
               />
@@ -37,7 +37,7 @@ const Header = () => {
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex gap-8">
-              <Link to="/solutions" className="nav-link">Solutions</Link>
+              <Link to="/our-work" className="nav-link">Our Work</Link>
               <Link to="/about" className="nav-link">About Us</Link>
               <Link to="/case-studies" className="nav-link">Case Studies</Link>
               <Link to="/resources" className="nav-link">Resources</Link>
@@ -54,7 +54,7 @@ const Header = () => {
                 asChild
                 className="btn-primary rounded-full px-5 hidden lg:inline-flex"
               >
-                <Link to="/solutions">Explore Solutions</Link>
+                <Link to="/services">Explore our services</Link>
               </Button>
 
               {/* Hamburger */}
@@ -82,8 +82,8 @@ const Header = () => {
             ">
               <div className="flex flex-col gap-5 p-6 text-[var(--text-primary)]">
 
-                <Link to="/solutions" onClick={()=>setMobileMenuOpen(false)}>
-                  Solutions
+                <Link to="/our-work" onClick={()=>setMobileMenuOpen(false)}>
+                  Our Work
                 </Link>
 
                 <Link to="/about" onClick={()=>setMobileMenuOpen(false)}>
@@ -106,8 +106,8 @@ const Header = () => {
                   asChild
                   className="btn-primary w-full rounded-full mt-2"
                 >
-                  <Link to="/solutions" onClick={()=>setMobileMenuOpen(false)}>
-                    Explore Solutions
+                  <Link to="/services" onClick={()=>setMobileMenuOpen(false)}>
+                    Explore our services
                   </Link>
                 </Button>
 

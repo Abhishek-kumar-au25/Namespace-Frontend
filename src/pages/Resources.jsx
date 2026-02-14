@@ -38,6 +38,22 @@ const Resources = () => {
       img: "https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress&cs=tinysrgb&w=800",
       link: "/assets/case-audit.pdf",
     },
+    {
+      title: "AI Ops Playbook",
+      type: "Guide",
+      date: "2024-07-10",
+      desc: "A practical guide to operationalizing AI models with monitoring, retraining, and governance.",
+      img: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
+      link: "/assets/ai-ops-playbook.pdf",
+    },
+    {
+      title: "Case Study: Fraud Detection AI",
+      type: "Case Study",
+      date: "2024-05-22",
+      desc: "How we reduced fraud losses by 80% with real-time risk scoring and explainable alerts.",
+      img: "https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=800",
+      link: "/assets/case-fraud-detection.pdf",
+    },
   ];
 
   const [query, setQuery] = useState("");

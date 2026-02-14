@@ -1,148 +1,106 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { Button } from "@/components/ui/button";
-
-// IMPORT IMAGES (use placeholder hosted images)
-const case1 = "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80";
-const case2 = "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=800&q=80";
-const case3 = "https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=800&q=80";
+import { caseStudies } from "@/data/caseStudies";
 
 const CaseStudies = () => {
-
-  // CASE DATA WITH IMAGES
-  const cases = [
-    {
-      title: "Fraud Detection AI",
-      result: "Reduced fraud by 80%",
-      image: case1,
-    },
-    {
-      title: "Audit Automation",
-      result: "Saved 2000+ hours",
-      image: case2,
-    },
-    {
-      title: "Risk Prediction",
-      result: "Prevented compliance failures",
-      image: case3,
-    },
-  ];
+  const cases = caseStudies;
 
   return (
     <div className="min-h-screen text-[var(--text-primary)]">
-
-
-
       {/* HERO */}
       <section className="pt-32 text-center px-6">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Case Studies:{" "}
-            <span className="gradient-text">Real Results</span>
+            Case Studies: <span className="gradient-text">Real Results</span>
           </h1>
-
           <p className="text-gray-400 mb-6">
-            Learn how our AI solutions created measurable business impact
-            across industry verticals.
+            Detailed success stories that show how we solve real problems and
+            deliver measurable business outcomes.
           </p>
         </div>
       </section>
 
-      {/* CASE CARDS */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-4 sm:gap-6">
+      {/* DETAILED CASE STUDIES */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto space-y-8">
+          {cases.map((c) => (
+            <article key={c.slug} className="glass-card overflow-hidden">
+              <div className="grid lg:grid-cols-5">
+                <div className="relative lg:col-span-2">
+                  <img
+                    src={c.image}
+                    alt={c.title}
+                    className="w-full h-64 lg:h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-5">
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-gray-300">
+                        Case Study
+                      </p>
+                      <h3 className="text-lg font-semibold">{c.title}</h3>
+                      <p className="text-sm text-purple-400">{c.result}</p>
+                    </div>
+                  </div>
+                </div>
 
-          {cases.map((c, i) => (
-            <div key={i} className="glass-card p-0 overflow-hidden">
+                <div className="lg:col-span-3 p-6 space-y-5">
+                  <p className="text-gray-300 text-sm">{c.summary}</p>
 
-              {/* IMAGE */}
-              <div className="relative h-48">
-                <img
-                  src={c.image}
-                  alt={c.title}
-                  className="w-full h-full object-cover"
-                />
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm font-semibold">Problem</p>
+                      <p className="text-gray-400 text-sm">
+                        {c.problemStatement}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">Solution</p>
+                      <p className="text-gray-400 text-sm">
+                        {c.solutionApproach}
+                      </p>
+                    </div>
+                  </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                   <div>
-                    <h3 className="text-[var(--text-primary)] font-semibold">
-                      {c.title}
-                    </h3>
-                    <p className="text-sm text-purple-400">
-                      {c.result}
-                    </p>
+                    <p className="text-sm font-semibold">Results</p>
+                    <ul className="mt-2 space-y-1 text-gray-400 text-sm">
+                      {c.results.slice(0, 2).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-semibold">Tools & Tech</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {c.toolsTech.slice(0, 4).map((tool) => (
+                        <span
+                          key={tool}
+                          className="text-xs text-gray-300 border border-white/10 rounded-full px-3 py-1"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end">
+                    <Button
+                      asChild
+                      size="sm"
+                      variant="outline"
+                      className="btn-outline rounded-full px-4"
+                    >
+                      <Link to={`/case-studies/${c.slug}`}>View Article</Link>
+                    </Button>
                   </div>
                 </div>
               </div>
-
-              {/* CONTENT */}
-              <div className="p-6">
-                <p className="text-gray-300 text-sm mb-4">
-                  A concise summary of the challenge, our approach and the
-                  outcome that demonstrates the value we delivered.
-                </p>
-
-                <div className="text-right">
-                  <Button asChild size="sm" className="rounded-full px-4">
-                    <Link to="/contact">Get the full case study</Link>
-                  </Button>
-                </div>
-              </div>
-
-            </div>
+            </article>
           ))}
-
         </div>
       </section>
-
-      {/* DETAILED SUMMARIES */}
-      <section className="py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-
-          <h3 className="text-xl font-semibold mb-4">
-            Case Study Deep Dives
-          </h3>
-
-          <p className="text-gray-400 mb-6">
-            Explore selected deep-dive summaries that outline the challenge,
-            approach, and measurable outcomes.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
-
-            {cases.map((c, i) => (
-              <div key={`d-${i}`} className="glass-card p-6">
-
-                <h4 className="font-semibold mb-2">{c.title}</h4>
-
-                <p className="text-gray-400 text-sm mb-3">
-                  Challenge: Identify patterns of loss and reduce operational
-                  overhead using AI-driven automation.
-                </p>
-
-                <p className="text-gray-400 text-sm mb-4">
-                  Outcome:{" "}
-                  <strong className="text-purple-400">
-                    {c.result}
-                  </strong>
-                </p>
-
-                <div className="text-right">
-                  <Button asChild size="sm" className="rounded-full px-4">
-                    <Link to="/contact">Request Full Report</Link>
-                  </Button>
-                </div>
-
-              </div>
-            ))}
-
-          </div>
-        </div>
-      </section>
-
-
-
     </div>
   );
 };

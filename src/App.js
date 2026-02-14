@@ -26,9 +26,12 @@ import TermsConditions from "./pages/TermsConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
 import CaseStudies from "./pages/CaseStudies";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
 import Resources from "./pages/Resources";
 import ExploreSolutions from "./pages/exploreSolutions";
 import OurClients from "./pages/OurClients";
+import OurWork from "./pages/OurWork";
+import OurWorkDetail from "./pages/OurWorkDetail";
 import CursorDot from "@/components/layout/CursorDot";
 import { ThemeProvider, useTheme } from "@/components/layout/ThemeProvider";
 import ThemeToggle from "@/components/layout/ThemeToggle";
@@ -61,8 +64,12 @@ const AppRouter = () => {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/cookies" element={<CookiePolicy />} />
         <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
         <Route path="/our-clients" element={<OurClients />} />
+        <Route path="/our-work" element={<OurWork />} />
+        <Route path="/our-work/:slug" element={<OurWorkDetail />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/services" element={<Solutions />} />
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/explore-solutions" element={<ExploreSolutions />} />
       </Route>

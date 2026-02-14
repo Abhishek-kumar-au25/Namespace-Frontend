@@ -83,6 +83,43 @@ const Solutions = () => {
         </div>
       </section>
 
+      {/* EXPERT TEAM */}
+      <section className="py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="liquid-glass p-8 sm:p-12">
+            <h2 className="text-2xl font-semibold mb-3">Expert Team</h2>
+            <p className="text-gray-400 mb-6">
+              We have a 50+ member delivery team with expert iOS developers,
+              Android developers, and AI-integrated engineers who build
+              production-ready mobile apps and intelligent systems.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
+              <div className="glass-card p-6">
+                <h3 className="font-semibold mb-2">iOS Developers</h3>
+                <p className="text-gray-400 text-sm">
+                  Swift and SwiftUI specialists focused on secure, polished
+                  mobile experiences.
+                </p>
+              </div>
+              <div className="glass-card p-6">
+                <h3 className="font-semibold mb-2">Android Developers</h3>
+                <p className="text-gray-400 text-sm">
+                  Kotlin-first engineering for scalable Android apps with fast
+                  iteration cycles.
+                </p>
+              </div>
+              <div className="glass-card p-6">
+                <h3 className="font-semibold mb-2">AI-Integrated Developers</h3>
+                <p className="text-gray-400 text-sm">
+                  AI features embedded into products with reliable model
+                  integration and monitoring.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* WHY IT MATTERS */}
       <section className="py-12 px-6">
         <div className="max-w-7xl mx-auto">

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Star, Sparkles, Building2, Handshake, TrendingUp } from "lucide-react";
+import { ourClientsTestimonials } from "@/data/testimonials";
 
 const OurClients = () => {
   const clients = [
@@ -20,20 +21,7 @@ const OurClients = () => {
     { value: "24 hrs", label: "Avg. response time" },
   ];
 
-  const testimonials = [
-    {
-      quote:
-        "Namespace delivered a production-ready AI pipeline in weeks, not months. Our teams now make faster, clearer decisions.",
-      author: "Anand Joshi",
-      title: "CFO, Leading NBFC",
-    },
-    {
-      quote:
-        "Their audit automation cut manual effort dramatically while improving coverage across all business units.",
-      author: "Madhav",
-      title: "Head of Internal Audit",
-    },
-  ];
+  const testimonials = ourClientsTestimonials;
 
   return (
     <div className="min-h-screen text-[var(--text-primary)]">

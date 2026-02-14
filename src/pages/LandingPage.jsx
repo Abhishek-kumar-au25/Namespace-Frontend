@@ -22,6 +22,7 @@ import {
 import VideoBackground from "@/components/layout/VideoBackground";
 import HeroAnimated from "@/components/landing/HeroAnimated";
 import FeatureStack from "@/components/landing/FeatureStack";
+import { landingTestimonials } from "@/data/testimonials";
 
 // Simple Card Component (no rotating dot)
 const AnimatedCard = ({ children, className = "", delay = 0 }) => {
@@ -31,6 +32,104 @@ const AnimatedCard = ({ children, className = "", delay = 0 }) => {
       style={{ transitionDelay: `${delay}s` }}
     >
       {children}
+    </div>
+  );
+};
+
+const computeAverageColor = (image) => {
+  try {
+    const canvas = document.createElement("canvas");
+    const size = 32;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return null;
+
+    ctx.drawImage(image, 0, 0, size, size);
+    const { data } = ctx.getImageData(0, 0, size, size);
+
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    let count = 0;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const alpha = data[i + 3];
+      if (alpha < 24) continue;
+      r += data[i];
+      g += data[i + 1];
+      b += data[i + 2];
+      count += 1;
+    }
+
+    if (!count) return null;
+
+    r = Math.round(r / count);
+    g = Math.round(g / count);
+    b = Math.round(b / count);
+
+    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    if (luma > 220) {
+      r = Math.round(r * 0.75);
+      g = Math.round(g * 0.75);
+      b = Math.round(b * 0.75);
+    } else if (luma < 40) {
+      const boost = 60 - luma;
+      r = Math.min(255, Math.round(r + boost));
+      g = Math.min(255, Math.round(g + boost));
+      b = Math.min(255, Math.round(b + boost));
+    }
+
+    return { r, g, b };
+  } catch (error) {
+    return null;
+  }
+};
+
+const LogoBadge = ({ src, name }) => {
+  const [rgb, setRgb] = useState(null);
+
+  const handleLoad = (event) => {
+    const color = computeAverageColor(event.currentTarget);
+    if (color) setRgb(color);
+  };
+
+  const badgeStyle = rgb
+    ? {
+        background: `radial-gradient(circle at 30% 30%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.45), rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2) 60%, rgba(8, 8, 12, 0.2) 100%)`,
+        boxShadow: `0 16px 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.28)`,
+      }
+    : undefined;
+
+  return (
+    <div
+      className="
+        w-24 h-24
+        rounded-full
+        bg-white/5
+        border border-white/15
+        backdrop-blur-sm
+        flex items-center justify-center
+        overflow-hidden
+        transition duration-300
+        group-hover:border-white/30
+      "
+      style={badgeStyle}
+    >
+      <img
+        src={src}
+        alt={name}
+        className="
+          h-full w-full object-cover
+          opacity-90
+          transition duration-300
+          group-hover:opacity-100
+        "
+        loading="lazy"
+        decoding="async"
+        crossOrigin="anonymous"
+        onLoad={handleLoad}
+      />
     </div>
   );
 };
@@ -306,53 +405,7 @@ const LandingPage = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      quote:
-        "Namespace Consultants transformed our risk management approach. Their AI solutions reduced our fraud losses by 80% in just 6 months.",
-      author: "Anand Joshi",
-      role: "CFO, Leading NBFC",
-      company: "FinServ India",
-      rating: 5,
-      photo: "/assets/AnandJoshi.jpeg",
-    },
-    {
-      quote:
-        "The audit automation platform they built saved us 2000+ man-hours annually. Exceptional blend of human insight and AI intelligence.",
-      author: "Madhav",
-      role: "Head of Internal Audit",
-      company: "Tech Unicorn",
-      rating: 5,
-      photo: "/assets/Madhav.jpeg",
-    },
-    {
-      quote:
-        "Their predictive risk models helped us proactively identify compliance gaps before they became issues. True partners in our growth.",
-      author: "Nitesh Garg",
-      role: "CEO",
-      company: "Fintech Startup",
-      rating: 5,
-      photo: "/assets/NiteshGarg.jpeg",
-    },
-    {
-      quote:
-        "Working with Namespace was a game-changer for our data analytics. They delivered beyond our expectations with innovative AI solutions.",
-      author: "Sourabh Mittal",
-      role: "CTO",
-      company: "E-commerce Platform",
-      rating: 5,
-      photo: "/assets/SourabhMittal.jpeg",
-    },
-    {
-      quote:
-        "Namespace Consultants helped us modernize our analytics stack with practical AI that improved forecasting accuracy and operational visibility.",
-      author: "Kartikeya Goel",
-      role: "Managing Partner",
-      company: "Alka Trading Company",
-      rating: 5,
-      photo: null,
-    },
-  ];
+  const testimonials = landingTestimonials;
 
   const services = [
     {
@@ -371,22 +424,15 @@ const LandingPage = () => {
   ];
 
   const partners = [
-    { name: "MIKRON", icon: null },
-    { name: "Patto Graphic", subtext: null },
-    { name: "Gargoosh", icon: null },
-    { name: "VELO CITY", subtext: null },
-
-    // ✅ New Partners
-    { name: "FinEdge Capital", subtext: null },
-    { name: "DataNova Labs", subtext: null },
-    // { name: "CloudAxis", subtext: "cloud solutions" },
-    // { name: "NeuroSpark", subtext: "AI automation" },
-    // { name: "QuantBridge", subtext: "analytics" },
-    // { name: "InnoWare Systems", subtext: "enterprise tech" },
-    // { name: "BlueGrid Energy", subtext: "energy tech" },
-    // { name: "VisionNext", subtext: "computer vision" },
-    // { name: "CoreStack", subtext: "infrastructure" },
-    // { name: "SmartOps", subtext: "business automation" },
+    { name: "2Edge", logo: "/assets/2edgelogo.png" },
+    { name: "Alkatrading", logo: "/assets/Alkatrading.jpeg" },
+    { name: "AVDMC", logo: "/assets/AVDMC.jpeg" },
+    { name: "Bare Nexus", logo: "/assets/barenexus.jpeg" },
+    { name: "Geetcare", logo: "/assets/Geetcare.jpeg" },
+    { name: "IOTIVITY", logo: "/assets/IOTIVITY.jpeg" },
+    { name: "JMF", logo: "/assets/JMF.jpeg" },
+    { name: "SBC", logo: "/assets/sbc.jpeg" },
+    { name: "Web", logo: "/assets/web.png" },
   ];
 
   return (
@@ -680,55 +726,17 @@ const LandingPage = () => {
 
           <AnimatedCard className="overflow-hidden scroll-reveal">
             <div className="relative w-full overflow-hidden py-6">
-              {/* Marquee */}
               <div className="marquee flex items-center">
                 {[...partners, ...partners].map((partner, i) => (
                   <div
                     key={i}
                     className="
             flex flex-col items-center justify-center
-            mx-12 min-w-[140px]
-            group cursor-pointer
+            mx-10 min-w-[150px]
+            group
           "
                   >
-                    {/* Partner Name */}
-                    <span
-                      className="
-            text-xl font-semibold
-            text-gray-400
-            group-hover:text-[var(--text-primary)]
-            transition-all duration-300
-            tracking-wide
-          "
-                    >
-                      {partner.name}
-                    </span>
-
-                    {/* Subtext */}
-                    {partner.subtext && (
-                      <span
-                        className="
-              text-xs text-gray-600
-              group-hover:text-purple-400
-              transition-all
-              mt-1
-            "
-                      >
-                        {partner.subtext}
-                      </span>
-                    )}
-
-                    {/* Glow dot */}
-                    <div
-                      className="
-            w-1.5 h-1.5 mt-3
-            rounded-full
-            bg-purple-500/40
-            opacity-0
-            group-hover:opacity-100
-            transition
-          "
-                    />
+                    <LogoBadge src={partner.logo} name={partner.name} />
                   </div>
                 ))}
               </div>
