@@ -36,77 +36,18 @@ const AnimatedCard = ({ children, className = "", delay = 0 }) => {
   );
 };
 
-const computeAverageColor = (image) => {
-  try {
-    const canvas = document.createElement("canvas");
-    const size = 32;
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    if (!ctx) return null;
-
-    ctx.drawImage(image, 0, 0, size, size);
-    const { data } = ctx.getImageData(0, 0, size, size);
-
-    let r = 0;
-    let g = 0;
-    let b = 0;
-    let count = 0;
-
-    for (let i = 0; i < data.length; i += 4) {
-      const alpha = data[i + 3];
-      if (alpha < 24) continue;
-      r += data[i];
-      g += data[i + 1];
-      b += data[i + 2];
-      count += 1;
-    }
-
-    if (!count) return null;
-
-    r = Math.round(r / count);
-    g = Math.round(g / count);
-    b = Math.round(b / count);
-
-    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    if (luma > 220) {
-      r = Math.round(r * 0.75);
-      g = Math.round(g * 0.75);
-      b = Math.round(b * 0.75);
-    } else if (luma < 40) {
-      const boost = 60 - luma;
-      r = Math.min(255, Math.round(r + boost));
-      g = Math.min(255, Math.round(g + boost));
-      b = Math.min(255, Math.round(b + boost));
-    }
-
-    return { r, g, b };
-  } catch (error) {
-    return null;
-  }
-};
-
 const LogoBadge = ({ src, name }) => {
-  const [rgb, setRgb] = useState(null);
-
-  const handleLoad = (event) => {
-    const color = computeAverageColor(event.currentTarget);
-    if (color) setRgb(color);
+  const badgeStyle = {
+    background:
+      "linear-gradient(135deg, #ffffff 0%, #f3f4f6 55%, #ffffff 100%)",
   };
-
-  const badgeStyle = rgb
-    ? {
-        background: `radial-gradient(circle at 30% 30%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.45), rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2) 60%, rgba(8, 8, 12, 0.2) 100%)`,
-        boxShadow: `0 16px 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.28)`,
-      }
-    : undefined;
 
   return (
     <div
       className="
         w-24 h-24
         rounded-full
-        bg-white/5
+        bg-white
         border border-white/15
         backdrop-blur-sm
         flex items-center justify-center
@@ -120,15 +61,13 @@ const LogoBadge = ({ src, name }) => {
         src={src}
         alt={name}
         className="
-          h-full w-full object-cover
+          h-full w-full object-contain p-3
           opacity-90
           transition duration-300
           group-hover:opacity-100
         "
         loading="lazy"
         decoding="async"
-        crossOrigin="anonymous"
-        onLoad={handleLoad}
       />
     </div>
   );
@@ -424,15 +363,27 @@ const LandingPage = () => {
   ];
 
   const partners = [
-    { name: "2Edge", logo: "/assets/2edgelogo.png" },
-    { name: "Alkatrading", logo: "/assets/Alkatrading.jpeg" },
-    { name: "AVDMC", logo: "/assets/AVDMC.jpeg" },
-    { name: "Bare Nexus", logo: "/assets/barenexus.jpeg" },
-    { name: "Geetcare", logo: "/assets/Geetcare.jpeg" },
-    { name: "IOTIVITY", logo: "/assets/IOTIVITY.jpeg" },
-    { name: "JMF", logo: "/assets/JMF.jpeg" },
-    { name: "SBC", logo: "/assets/sbc.jpeg" },
-    { name: "Web", logo: "/assets/web.png" },
+    { name: "2Edge", logo: "/assets/Company Logos/2edgelogo.png" },
+    {
+      name: "Alkatrading",
+      logo: "/assets/Company Logos/Alkatrading-removebg-preview.png",
+    },
+    { name: "AVDMC", logo: "/assets/Company Logos/AVDMC-removebg-preview.png" },
+    {
+      name: "Bare Nexus",
+      logo: "/assets/Company Logos/barenexus-removebg-preview.png",
+    },
+    {
+      name: "Geetcare",
+      logo: "/assets/Company Logos/Geetcare-removebg-preview.png",
+    },
+    {
+      name: "IOTIVITY",
+      logo: "/assets/Company Logos/IOTIVITY-removebg-preview.png",
+    },
+    { name: "JMF", logo: "/assets/Company Logos/JMF-removebg-preview.png" },
+    { name: "SBC", logo: "/assets/Company Logos/sbc-removebg-preview.png" },
+    { name: "Web", logo: "/assets/Company Logos/web-removebg-preview.png" },
   ];
 
   return (
